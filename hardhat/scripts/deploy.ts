@@ -1,7 +1,8 @@
-const { ethers } = require("hardhat");
+import "@nomiclabs/hardhat-ethers";
+import hre from "hardhat";
 
 async function main() {
-  const CommunityReserve = await ethers.getContractFactory("CommunityReserve");
+  const CommunityReserve = await hre.ethers.getContractFactory("CommunityReserve");
   const contract = await CommunityReserve.deploy();
   await contract.deployed();
   console.log("CommunityReserve deployed to:", contract.address);
