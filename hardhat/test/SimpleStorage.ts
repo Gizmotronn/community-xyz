@@ -7,7 +7,7 @@ describe("SimpleStorage", function () {
     const contract = await SimpleStorage.deploy();
     await contract.deployed();
 
-    await contract.set(42);
-    expect(await contract.get()).to.equal(42);
+  await contract.set(42);
+  expect((await contract.get()).toNumber()).to.equal(42);
   });
 });

@@ -8,10 +8,12 @@ services:
     ports:
       - "3000:3000"
     environment:
-      - NODE_ENV=production
+      - NODE_ENV=development
     depends_on:
       - hardhat
-    command: ["sh", "/docker/start-frontend.sh"]
+    command: ["npm", "run", "dev"]
+    volumes:
+      - ./:/app
 
   hardhat:
     build:

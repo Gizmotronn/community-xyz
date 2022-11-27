@@ -1,5 +1,7 @@
 "use client"
 
+import { WalletConnectButton } from "@/components/wallet-connect-button";
+
 import { FloatingNavigation } from "@/components/floating-navigation";
 import { Footer } from "@/components/footer";
 import { useEffect, useRef } from "react";
@@ -119,7 +121,7 @@ export default function HomePage() {
             <h1 className="text-5xl md:text-6xl font-extrabold text-center tracking-tight mb-4 text-[#233B54] drop-shadow-lg">Health isn&apos;t built in hospitals.<br />It&apos;s built in communities.</h1>
             <p className="text-xl md:text-2xl text-center mb-2 text-[#A63A2B] font-semibold">Health Protocol and Health-Shared activate real-world people—patients, carers, and everyday citizens—through smart incentives rooted in game theory.</p>
             <p className="text-lg md:text-xl text-center text-[#A06A8C] mb-4">Together, we&apos;re flipping the system: from extractive to cooperative, from passive to empowered, from data silos to open coordination.</p>
-            <div className="flex gap-4 mt-4">
+            <div className="flex flex-col md:flex-row gap-6 mt-8 items-center justify-center w-full">
               <a
                 href="https://discord.gg/healthprotocol"
                 target="_blank"
@@ -129,13 +131,17 @@ export default function HomePage() {
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect width="24" height="24" rx="12" fill="#5865F2"/><path d="M16.5 8.5C15.7 8.1 14.9 7.8 14.1 7.6C14 7.8 13.9 8 13.8 8.2C12.7 8.1 11.3 8.1 10.2 8.2C10.1 8 10 7.8 9.9 7.6C9.1 7.8 8.3 8.1 7.5 8.5C5.7 11.1 5.2 13.6 5.3 16.1C6.5 17.1 7.8 17.7 9.1 18.1C9.3 17.8 9.5 17.5 9.7 17.2C10.3 17.3 11 17.4 11.7 17.4C12.4 17.4 13.1 17.3 13.7 17.2C13.9 17.5 14.1 17.8 14.3 18.1C15.6 17.7 16.9 17.1 18.1 16.1C18.2 13.6 17.7 11.1 16.5 8.5ZM9.8 15.2C9.3 15.2 8.9 14.8 8.9 14.3C8.9 13.8 9.3 13.4 9.8 13.4C10.3 13.4 10.7 13.8 10.7 14.3C10.7 14.8 10.3 15.2 9.8 15.2ZM14.2 15.2C13.7 15.2 13.3 14.8 13.3 14.3C13.3 13.8 13.7 13.4 14.2 13.4C14.7 13.4 15.1 13.8 15.1 14.3C15.1 14.8 14.7 15.2 14.2 15.2Z" fill="white"/></svg>
                 Discord
               </a>
-              <div>{/* ...existing code for wallet-connect-button... */}</div>
+              <div className="flex flex-col items-center gap-2 w-full md:w-auto">
+                <span className="text-lg font-semibold text-[#233B54] mb-1">Connect your wallet to join the movement:</span>
+                <WalletConnectButton />
+              </div>
             </div>
           </div>
         </section>
         {/* Block 2: Flywheel CTA - wide orange bar */}
         <section className="w-full max-w-5xl rounded-full bg-[#F6A23A] shadow p-6 flex flex-col items-center animate-fade-in-up" style={{animationDelay: '0.3s'}}>
           <span className="text-2xl font-bold text-[#233B54] mb-2">Welcome to the new flywheel of value.</span>
+          <WalletConnectButton />
         </section>
         {/* Remaining roadmap sections as wide, visually distinct blocks */}
         {sections.slice(2).map((section, idx) => {
