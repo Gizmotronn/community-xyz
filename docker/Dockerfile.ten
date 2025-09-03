@@ -1,0 +1,5 @@
+# TEN Node Dockerfile (placeholder)
+FROM ubuntu:22.04
+WORKDIR /ten
+# TODO: Add build steps for TEN node
+CMD ["/bin/bash"]

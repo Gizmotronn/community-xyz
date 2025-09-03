@@ -1,27 +1,52 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
-# dependencies
-/node_modules
+# Node modules
+node_modules/
+**/node_modules/
 
-# next.js
-/.next/
-/out/
+# Build output
+.next/
+dist/
+out/
+build/
 
-# production
-/build
+# Hardhat artifacts
+hardhat/cache/
+hardhat/artifacts/
+hardhat/typechain/
+hardhat/coverage/
+hardhat/node_modules
 
-# debug
+# Logs
+*.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
-# env files
-.env*
+# OS files
+.DS_Store
+Thumbs.db
 
-# vercel
-.vercel
+# Env files
+.env
+.env.local
+.env.*.local
 
-# typescript
-*.tsbuildinfo
-next-env.d.ts
+# Docker
+**/.docker/
+**/docker-data/
+
+# Misc
+*.swp
+*.swo
+
+# Ignore frontend build
+components.json
+llm.txt
+/llm.txt
+
+# Ignore lock files (optional, uncomment if you don't want to commit lock files)
+# package-lock.json
+# yarn.lock
+# pnpm-lock.yaml

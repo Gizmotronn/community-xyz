@@ -1,0 +1,32 @@
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile.frontend
+    container_name: frontend
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+    depends_on:
+      - hardhat
+
+  hardhat:
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile.hardhat
+    container_name: hardhat
+    ports:
+      - "8545:8545"
+    volumes:
+      - ./hardhat:/hardhat
+
+  ten:
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile.ten
+    container_name: ten
+    ports:
+      - "18545:18545" # Example port, update as needed
+    # TODO: Add environment, volumes, and setup for TEN node
+    
