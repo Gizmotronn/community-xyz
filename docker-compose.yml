@@ -21,12 +21,4 @@ services:
     volumes:
       - ./hardhat:/hardhat
 
-  ten:
-    build:
-      context: .
-      dockerfile: ./docker/Dockerfile.ten
-    container_name: ten
-    ports:
-      - "18545:18545" # Example port, update as needed
-    # TODO: Add environment, volumes, and setup for TEN node
     
