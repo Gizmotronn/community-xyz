@@ -1,18 +1,22 @@
 import { HardhatUserConfig } from "hardhat/config";
+// import "@matterlabs/hardhat-zksync-deploy";
+// import "@matterlabs/hardhat-zksync-solc";
 import "@nomiclabs/hardhat-ethers";
-import "@nomiclabs/hardhat-waffle";
-
-const TEN_RPC_URL = "https://gateway.ten.xyz/"; // TEN testnet RPC
 
 const config: HardhatUserConfig = {
   solidity: "0.8.21",
   networks: {
-    ten: {
-      url: TEN_RPC_URL,
-      chainId: 443, 
-      accounts: ["f16706b46e4cd2b2030c2f06549f0238ebf5f7f7c4955428975ec8134add8aae"] 
-    }
+    hardhat: {}, // Local Ethereum environment for fast testing
+    zksyncTestnet: {
+      url: "https://testnet.era.zksync.dev", // ZKsync testnet endpoint
+    },
   },
 };
 
 export default config;
+
+export const zksolc = {
+  version: "1.3.13", // Use latest compatible version
+  compilerSource: "binary",
+  settings: {},
+};

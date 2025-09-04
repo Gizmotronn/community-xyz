@@ -7,9 +7,12 @@ services:
     ports:
       - "3000:3000"
     environment:
-      - NODE_ENV=production
+      - NODE_ENV=development
     depends_on:
       - hardhat
+    command: ["npm", "run", "dev"]
+    volumes:
+      - ./:/app
 
   hardhat:
     build:
@@ -20,13 +23,4 @@ services:
       - "8545:8545"
     volumes:
       - ./hardhat:/hardhat
-
-  ten:
-    build:
-      context: .
-      dockerfile: ./docker/Dockerfile.ten
-    container_name: ten
-    ports:
-      - "18545:18545" # Example port, update as needed
-    # TODO: Add environment, volumes, and setup for TEN node
-    
+    command: ["sh", "/docker/start-hardhat.sh"]

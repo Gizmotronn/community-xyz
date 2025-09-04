@@ -1,3 +1,4 @@
+
 # Hardhat Dockerfile
 FROM node:20-alpine
 WORKDIR /hardhat
@@ -6,6 +7,7 @@ COPY hardhat/package-lock.json ./
 COPY hardhat/contracts ./contracts
 COPY hardhat/scripts ./scripts
 COPY hardhat/test ./test
+COPY ./docker/start-hardhat.sh /docker/start-hardhat.sh
 RUN npm install --legacy-peer-deps
 EXPOSE 8545
 CMD ["npx", "hardhat", "node", "--hostname", "0.0.0.0"]

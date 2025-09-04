@@ -1,0 +1,39 @@
+name: Docker Compose Build Test
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build Docker Compose services
+        run: |
+          docker compose -f docker-compose.yml build
+
+      - name: Compile Hardhat contracts
+        run: |
+          cd hardhat
+          npm install --legacy-peer-deps
+          npx hardhat compile
+
+      - name: Run Hardhat tests
+        run: |
+          cd hardhat
+          npx hardhat test
+
+      - name: Run Docker Compose containers (smoke test)
+        run: |
+          docker compose -f docker-compose.yml up -d
+          sleep 10
+          docker compose ps
+          docker compose logs
+          docker compose down

@@ -1,10 +1,11 @@
-import { ethers } from "hardhat";
+import "@nomiclabs/hardhat-ethers";
+import hre from "hardhat";
 
 async function main() {
-  const SimpleStorage = await ethers.getContractFactory("SimpleStorage");
-  const contract = await SimpleStorage.deploy();
+  const CommunityReserve = await hre.ethers.getContractFactory("CommunityReserve");
+  const contract = await CommunityReserve.deploy();
   await contract.deployed();
-  console.log("SimpleStorage deployed to:", contract.address);
+  console.log("CommunityReserve deployed to:", contract.address);
 }
 
 main().catch((error) => {

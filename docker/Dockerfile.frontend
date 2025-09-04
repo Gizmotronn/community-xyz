@@ -2,6 +2,7 @@
 FROM node:20-alpine
 WORKDIR /app
 COPY . .
-RUN npm install --legacy-peer-deps && npm run build
+COPY ./docker/start-frontend.sh /docker/start-frontend.sh
+RUN npm install --legacy-peer-deps
 EXPOSE 3000
-CMD ["npm", "start"]
+CMD ["npm", "run", "dev"]
