@@ -5,20 +5,24 @@
   "scripts": {
     "test": "hardhat test",
     "compile": "hardhat compile",
-    "deploy": "hardhat run scripts/deploy.ts"
+    "deploy": "hardhat run scripts/deploy.ts --network ten",
+    "deploy:local": "hardhat run scripts/deploy.ts --network localhost",
+    "node": "hardhat node",
+    "clean": "hardhat clean",
+    "typechain": "hardhat typechain",
+    "postcompile": "node scripts/copy-artifacts.js",
+    "postdeploy": "node scripts/copy-artifacts.js"
   },
   "devDependencies": {
-    "@matterlabs/hardhat-zksync-deploy": "^1.8.0",
-    "@matterlabs/hardhat-zksync-solc": "^1.5.1",
-    "@nomiclabs/hardhat-ethers": "^2.2.3",
+    "@nomicfoundation/hardhat-toolbox": "^4.0.0",
+    "@nomiclabs/hardhat-ethers": "^2.2.2",
+    "@nomiclabs/hardhat-waffle": "^2.0.3",
     "@types/chai": "^5.2.2",
     "@types/mocha": "^10.0.10",
     "chai": "^4.3.7",
-    "ethers": "^5.8.0",
+    "ethers": "^5.7.2",
     "hardhat": "^2.22.0",
     "ts-node": "^10.9.1",
-    "typescript": "^5.3.3",
-    "zksync-ethers": "^6.20.1",
-    "zksync-web3": "^0.17.1"
+    "typescript": "^5.3.3"
   }
 }
