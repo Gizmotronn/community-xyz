@@ -10,12 +10,26 @@ dist/
 out/
 build/
 
-# Hardhat artifacts
+# Hardhat artifacts and cache
 hardhat/cache/
 hardhat/artifacts/
 hardhat/typechain/
+hardhat/typechain-types/
 hardhat/coverage/
 hardhat/node_modules
+cache/
+artifacts/
+typechain/
+typechain-types/
+coverage/
+
+# Smart contract deployment info (keep local only)
+hardhat/deployment-info.json
+deployment-info.json
+
+# Contract artifacts copies (auto-generated)
+artifacts/
+contracts/artifacts/
 
 # Logs
 *.log
@@ -23,28 +37,94 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
+lerna-debug.log*
 
 # OS files
 .DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
 Thumbs.db
 
-# Env files
+# Environment files
 .env
 .env.local
+.env.development.local
+.env.test.local
+.env.production.local
 .env.*.local
+*.env
+
+# TEN Network specific
+.ten/
+ten-data/
 
 # Docker
 **/.docker/
 **/docker-data/
+docker-compose.override.yml
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Frontend build and cache
+.next/
+.turbo/
+.vercel/
+
+# Package managers
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+.pnp
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
+
+# Testing
+coverage/
+.nyc_output/
+
+# TypeScript
+*.tsbuildinfo
+next-env.d.ts
 
 # Misc
 *.swp
 *.swo
 
-# Ignore frontend build
+# Ignore auto-generated files
 components.json
 llm.txt
 /llm.txt
+
+# Local development files
+.local/
+temp/
+tmp/
+
+# Blockchain development
+ganache-cli/
+.openzeppelin/
+.secret
+mnemonic.txt
+seed.txt
+
+# Security - Never commit private keys or mnemonics
+private-keys.txt
+mnemonic.txt
+.secret
+*.key
+*.pem
 
 # Ignore lock files (optional, uncomment if you don't want to commit lock files)
 # package-lock.json
