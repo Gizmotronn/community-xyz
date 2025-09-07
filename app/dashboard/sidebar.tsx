@@ -1,8 +1,10 @@
 import Link from "next/link"
+import { Activity } from "lucide-react"
 
 const links = [
   { name: "Overview", href: "/dashboard" },
   { name: "Communities", href: "/dashboard/communities" },
+  { name: "Health Scorecard Explorer", href: "/health-scorecard-explorer" },
   { name: "Reserve & Investments", href: "/dashboard/reserve" },
   { name: "Smart Contract", href: "/dashboard/contract" },
   { name: "Distribution Countdown", href: "/dashboard/distribution" },
