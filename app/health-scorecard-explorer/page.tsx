@@ -6,7 +6,7 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, BarChart, Bar, PieChart, Pie, Cell } from 'recharts';
-import { Activity, Users, TrendingUp, Globe, Award, Calendar, MapPin, Coins, RefreshCw, AlertCircle, ArrowRight, ExternalLink } from 'lucide-react';
+import { Activity, Users, TrendingUp, Globe, Award, Calendar, MapPin, Coins, RefreshCw, AlertCircle, ArrowRight, ExternalLink, Brain, Target, Gamepad2 } from 'lucide-react';
 import { FloatingNavigation } from '@/components/floating-navigation';
 import { Footer } from '@/components/footer';
 import Link from 'next/link';
@@ -25,7 +25,11 @@ const mockCommunities = [
         location: "Global",
         category: "General Health",
         growth: 15.3,
-        status: "active"
+        status: "active",
+        gameTheoryCycle: "5,5",
+        cycleDescription: "Optimal collaboration - High health engagement + High community rewards",
+        aiAgentDeployment: "Active",
+        stakingRewards: "15% APY"
     },
     {
         id: 2,
@@ -39,7 +43,11 @@ const mockCommunities = [
         location: "North America",
         category: "Diabetes",
         growth: 22.1,
-        status: "active"
+        status: "active",
+        gameTheoryCycle: "3,3",
+        cycleDescription: "Cooperative growth - Moderate engagement + Steady rewards",
+        aiAgentDeployment: "Deploying",
+        stakingRewards: "12% APY"
     },
     {
         id: 3,
@@ -53,7 +61,11 @@ const mockCommunities = [
         location: "Europe",
         category: "Mental Health",
         growth: 18.7,
-        status: "growing"
+        status: "growing",
+        gameTheoryCycle: "3,3",
+        cycleDescription: "Building momentum - Growing participation + Increasing rewards",
+        aiAgentDeployment: "Pending",
+        stakingRewards: "10% APY"
     }
 ];
 
@@ -149,8 +161,15 @@ export default function HealthScorecardExplorer() {
                     </h1>
 
                     <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-center mb-4 sm:mb-6 text-[#A63A2B] font-semibold max-w-5xl px-2">
-                        Discover community health metrics, track engagement, and explore the impact of decentralized health initiatives across our network.
+                        Bridging the gap between 3,3 and 5,5 game theory through blockchain health scorecards and AI agent deployment.
                     </p>
+
+                    {/* Game Theory Badge */}
+                    <div className="flex items-center gap-2 px-4 py-2 bg-white/90 backdrop-blur-sm rounded-full border border-white/50 mb-4 sm:mb-6">
+                        <Gamepad2 className="h-4 w-4 text-[#6DD6F2]" />
+                        <span className="text-sm font-bold text-[#233B54]">Game Theory Cycles Active</span>
+                        <Badge className="bg-[#6DD6F2] text-[#233B54] text-xs">3,3 → 5,5</Badge>
+                    </div>
 
                     {/* Key Metrics */}
                     <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-3 lg:gap-4 w-full max-w-5xl mb-6 sm:mb-8 px-2">
@@ -187,6 +206,45 @@ export default function HealthScorecardExplorer() {
                 </div>
             </section>
 
+            <div className="max-w-7xl mx-auto px-4 mb-6">
+                <div className="bg-yellow-50 border border-yellow-200 rounded-xl p-4 text-center">
+                    <p className="text-sm text-yellow-800">
+                        <strong>Demo Notice:</strong> This content is for demonstration purposes only.
+                        Some features are non-functional and use mock data for visualization.
+                    </p>
+                </div>
+            </div>
+
+            {/* Game Theory Information Section */}
+            <section className="w-full max-w-7xl mx-auto px-2 sm:px-4 lg:px-6 my-6 sm:my-8">
+                <div className="bg-gradient-to-r from-[#6DD6F2]/10 to-[#F6A23A]/10 rounded-2xl p-4 sm:p-6 border border-[#6DD6F2]/20">
+                    <div className="flex items-center gap-3 mb-4">
+                        <Target className="h-6 w-6 text-[#6DD6F2]" />
+                        <h3 className="text-xl sm:text-2xl font-bold text-[#233B54]">Blockchain Health Scorecards: Game Theory Bridge</h3>
+                    </div>
+                    <div className="grid md:grid-cols-2 gap-4 sm:gap-6">
+                        <div className="space-y-3">
+                            <h4 className="font-semibold text-[#233B54] flex items-center gap-2">
+                                <Badge className="bg-[#A06A8C] text-white text-xs">3,3</Badge>
+                                Cooperative Growth Phase
+                            </h4>
+                            <p className="text-sm text-[#A63A2B]">
+                                Communities start with moderate engagement and steady rewards. Members earn points through health activities like reading, watching videos, and community participation.
+                            </p>
+                        </div>
+                        <div className="space-y-3">
+                            <h4 className="font-semibold text-[#233B54] flex items-center gap-2">
+                                <Badge className="bg-[#6DD6F2] text-[#233B54] text-xs">5,5</Badge>
+                                Optimal Collaboration Phase
+                            </h4>
+                            <p className="text-sm text-[#A63A2B]">
+                                Advanced communities with AI agent deployment, high health engagement, maximum community rewards, and transparent scorecards on zkSync Sepolia.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
             {/* CTA Section */}
             <section className="w-full max-w-7xl mx-auto px-2 sm:px-4 lg:px-6 my-6 sm:my-8">
                 <div className="rounded-2xl sm:rounded-full shadow-xl p-4 sm:p-6 flex flex-col lg:flex-row items-center justify-between gap-4 sm:gap-6 hover:shadow-2xl hover:scale-[1.02] transition-all duration-300"
@@ -211,6 +269,7 @@ export default function HealthScorecardExplorer() {
                             variant="outline"
                             size="lg"
                             className="rounded-full px-4 sm:px-6 py-2 sm:py-3 border-[#233B54] text-[#233B54] hover:bg-[#233B54] hover:text-white font-semibold text-sm sm:text-base hover:scale-105 transition-all duration-300"
+                            onClick={() => window.open('https://medium.com/health-protocol/blockchain-health-scorecards-the-bridge-between-the-3-3-and-5-5-games-7db290dd0172', '_blank')}
                         >
                             Learn More
                         </Button>
@@ -277,15 +336,14 @@ export default function HealthScorecardExplorer() {
                     {/* Communities Tab */}
                     <TabsContent value="communities" className="space-y-4 sm:space-y-6">
                         {mockCommunities.map((community, idx) => {
-                            const palette = ['#A06A8C', '#6DD6F2', '#A63A2B'];
-                            const bg = palette[idx % palette.length];
-                            const shape = idx % 3 === 0 ? 'rounded-3xl sm:rounded-[3rem]' : idx % 3 === 1 ? 'rounded-xl' : 'rounded-2xl';
+                            const uniformBg = '#6DD6F2';
+                            const shape = 'rounded-2xl';
 
                             return (
                                 <div
                                     key={community.id}
                                     className={`${shape} shadow-xl p-4 sm:p-6 lg:p-8`}
-                                    style={{ background: `linear-gradient(120deg, ${bg} 70%, #F6F2D4 30%)` }}
+                                    style={{ background: `linear-gradient(120deg, ${uniformBg} 70%, #F6F2D4 30%)` }}
                                 >
                                     <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-4 sm:mb-6 gap-3">
                                         <div className="min-w-0 flex-1">
@@ -295,6 +353,26 @@ export default function HealthScorecardExplorer() {
                                         <div className="flex gap-2 flex-shrink-0 flex-wrap">
                                             <Badge className="bg-white/80 text-[#233B54] border-0 text-xs">{community.status}</Badge>
                                             <Badge variant="outline" className="border-[#233B54] text-[#233B54] text-xs">{community.category}</Badge>
+                                            <Badge className={`text-xs ${community.gameTheoryCycle === '5,5' ? 'bg-green-500 text-white' : 'bg-yellow-500 text-white'}`}>
+                                                {community.gameTheoryCycle}
+                                            </Badge>
+                                        </div>
+                                    </div>
+
+                                    {/* Game Theory Cycle Information */}
+                                    <div className="bg-white/60 rounded-xl p-3 sm:p-4 mb-4 hover:bg-white/80 transition-all duration-300">
+                                        <div className="flex items-center gap-2 mb-2">
+                                            <Target className="h-4 w-4 text-[#233B54]" />
+                                            <span className="font-semibold text-[#233B54]">Game Theory Cycle: {community.gameTheoryCycle}</span>
+                                        </div>
+                                        <p className="text-sm text-[#A63A2B] mb-2">{community.cycleDescription}</p>
+                                        <div className="flex flex-wrap gap-2 text-xs">
+                                            <Badge variant="outline" className="border-[#233B54] text-[#233B54]">
+                                                AI Agent: {community.aiAgentDeployment}
+                                            </Badge>
+                                            <Badge variant="outline" className="border-[#233B54] text-[#233B54]">
+                                                Staking: {community.stakingRewards}
+                                            </Badge>
                                         </div>
                                     </div>
 
@@ -333,6 +411,10 @@ export default function HealthScorecardExplorer() {
                                             <div className="flex items-center gap-1">
                                                 <TrendingUp className="h-3 w-3 sm:h-4 sm:w-4 text-green-600 flex-shrink-0" />
                                                 <span className="text-xs sm:text-sm text-green-600 font-medium">+{community.growth}% growth</span>
+                                            </div>
+                                            <div className="flex items-center gap-1">
+                                                <Brain className="h-3 w-3 sm:h-4 sm:w-4 text-[#6DD6F2] flex-shrink-0" />
+                                                <span className="text-xs sm:text-sm text-[#233B54] font-medium">AI: {community.aiAgentDeployment}</span>
                                             </div>
                                         </div>
 
@@ -373,13 +455,16 @@ export default function HealthScorecardExplorer() {
                             </div>
 
                             <div className="bg-white rounded-xl sm:rounded-2xl shadow-xl p-4 sm:p-6 hover:shadow-2xl hover:scale-[1.02] transition-all duration-300 group">
-                                <h3 className="text-lg sm:text-xl font-bold text-[#233B54] mb-2 group-hover:text-[#1a2938] transition-colors duration-300">Community Categories</h3>
-                                <p className="text-[#A63A2B] mb-4 text-sm sm:text-base group-hover:text-[#8b2f1e] transition-colors duration-300">Distribution by health focus area</p>
+                                <h3 className="text-lg sm:text-xl font-bold text-[#233B54] mb-2 group-hover:text-[#1a2938] transition-colors duration-300">Game Theory Distribution</h3>
+                                <p className="text-[#A63A2B] mb-4 text-sm sm:text-base group-hover:text-[#8b2f1e] transition-colors duration-300">3,3 vs 5,5 cycle progression</p>
                                 <div className="h-64 sm:h-80">
                                     <ResponsiveContainer width="100%" height="100%">
                                         <PieChart>
                                             <Pie
-                                                data={categoryData}
+                                                data={[
+                                                    { name: '3,3 Cooperative', value: 67, color: '#F6A23A' },
+                                                    { name: '5,5 Optimal', value: 33, color: '#6DD6F2' }
+                                                ]}
                                                 cx="50%"
                                                 cy="50%"
                                                 labelLine={false}
@@ -389,7 +474,10 @@ export default function HealthScorecardExplorer() {
                                                 dataKey="value"
                                                 fontSize={window.innerWidth < 640 ? 10 : 12}
                                             >
-                                                {categoryData.map((entry, index) => (
+                                                {[
+                                                    { name: '3,3 Cooperative', value: 67, color: '#F6A23A' },
+                                                    { name: '5,5 Optimal', value: 33, color: '#6DD6F2' }
+                                                ].map((entry, index) => (
                                                     <Cell key={`cell-${index}`} fill={entry.color} />
                                                 ))}
                                             </Pie>
@@ -422,7 +510,7 @@ export default function HealthScorecardExplorer() {
                     <TabsContent value="geographic" className="space-y-4 sm:space-y-6">
                         <div className="bg-white rounded-xl sm:rounded-2xl shadow-xl p-4 sm:p-6 lg:p-8">
                             <h3 className="text-lg sm:text-xl font-bold text-[#233B54] mb-2">Global Community Distribution</h3>
-                            <p className="text-[#A63A2B] mb-4 sm:mb-6 text-sm sm:text-base">Geographic spread of health communities</p>
+                            <p className="text-[#A63A2B] mb-4 sm:mb-6 text-sm sm:text-base">Geographic spread of health communities with AI agent deployment</p>
                             <div
                                 className="h-64 sm:h-80 lg:h-96 rounded-xl sm:rounded-2xl flex items-center justify-center"
                                 style={{ background: 'linear-gradient(120deg, #6DD6F2 60%, #F6A23A 40%)' }}
@@ -432,13 +520,13 @@ export default function HealthScorecardExplorer() {
                                     <div>
                                         <h4 className="text-lg sm:text-xl font-bold text-[#233B54]">Interactive Map Coming Soon</h4>
                                         <p className="text-[#A63A2B] max-w-md text-sm sm:text-base">
-                                            Real-time visualization of community locations, member density, and regional health trends.
+                                            Real-time visualization of community locations, game theory cycles, AI agent deployment status, and regional health trends.
                                         </p>
                                     </div>
                                     <div className="flex flex-wrap gap-2 justify-center">
-                                        <Badge className="bg-white/80 text-[#233B54] text-xs sm:text-sm">North America: 892 members</Badge>
-                                        <Badge className="bg-white/80 text-[#233B54] text-xs sm:text-sm">Europe: 654 members</Badge>
-                                        <Badge className="bg-white/80 text-[#233B54] text-xs sm:text-sm">Global: 1,247 members</Badge>
+                                        <Badge className="bg-white/80 text-[#233B54] text-xs sm:text-sm">North America: 892 members (3,3)</Badge>
+                                        <Badge className="bg-white/80 text-[#233B54] text-xs sm:text-sm">Europe: 654 members (3,3)</Badge>
+                                        <Badge className="bg-white/80 text-[#233B54] text-xs sm:text-sm">Global: 1,247 members (5,5)</Badge>
                                     </div>
                                 </div>
                             </div>
@@ -449,7 +537,7 @@ export default function HealthScorecardExplorer() {
                     <TabsContent value="contract" className="space-y-4 sm:space-y-6">
                         <div className="bg-white rounded-xl sm:rounded-2xl shadow-xl p-4 sm:p-6">
                             <h3 className="text-lg sm:text-xl font-bold text-[#233B54] mb-2">Live Contract Information</h3>
-                            <p className="text-[#A63A2B] mb-4 text-sm sm:text-base">Real-time data from Sepolia testnet</p>
+                            <p className="text-[#A63A2B] mb-4 text-sm sm:text-base">Real-time data from Sepolia testnet with game theory implementation</p>
                             <div className="space-y-4">
                                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
                                     <div className="space-y-2">
@@ -496,19 +584,23 @@ export default function HealthScorecardExplorer() {
                                         <h4 className="font-bold text-[#233B54] mb-2 text-sm sm:text-base">Current Contract Functionality</h4>
                                         <ul className="text-xs sm:text-sm text-[#A63A2B] space-y-1">
                                             <li>• User points tracking per community</li>
+                                            <li>• Game theory cycle implementation (3,3/5,5)</li>
                                             <li>• Timestamp-based activity logging</li>
                                             <li>• Multi-community support</li>
                                             <li>• Bulk point updates for efficiency</li>
+                                            <li>• AI agent integration framework</li>
                                         </ul>
                                     </div>
 
                                     <div className="p-3 sm:p-4 rounded-xl sm:rounded-2xl" style={{ background: 'linear-gradient(120deg, #F6A23A 70%, #F6F2D4 30%)' }}>
-                                        <h4 className="font-bold text-[#233B54] mb-2 text-sm sm:text-base">Coming Soon</h4>
+                                        <h4 className="font-bold text-[#233B54] mb-2 text-sm sm:text-base">Game Theory Features</h4>
                                         <ul className="text-xs sm:text-sm text-[#A63A2B] space-y-1">
-                                            <li>• Interview completion tracking</li>
-                                            <li>• Funds raised integration</li>
-                                            <li>• Member count automation</li>
-                                            <li>• Geographic data integration</li>
+                                            <li>• 3,3 Cooperative growth tracking</li>
+                                            <li>• 5,5 Optimal collaboration rewards</li>
+                                            <li>• Community DAO performance metrics</li>
+                                            <li>• Transparent staking mechanisms</li>
+                                            <li>• AI agent deployment status</li>
+                                            <li>• Health data integration pipeline</li>
                                         </ul>
                                     </div>
                                 </div>
