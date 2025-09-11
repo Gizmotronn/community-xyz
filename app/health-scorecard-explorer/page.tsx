@@ -81,6 +81,11 @@ export default function HealthScorecardExplorer() {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
     const [activityData, setActivityData] = useState([]);
+    const [mounted, setMounted] = useState(false);
+
+    useEffect(() => {
+        setMounted(true);
+    }, []);
 
     const fetchContractData = async () => {
         setLoading(true);
@@ -269,7 +274,11 @@ export default function HealthScorecardExplorer() {
                             variant="outline"
                             size="lg"
                             className="rounded-full px-4 sm:px-6 py-2 sm:py-3 border-[#233B54] text-[#233B54] hover:bg-[#233B54] hover:text-white font-semibold text-sm sm:text-base hover:scale-105 transition-all duration-300"
-                            onClick={() => window.open('https://medium.com/health-protocol/blockchain-health-scorecards-the-bridge-between-the-3-3-and-5-5-games-7db290dd0172', '_blank')}
+                            onClick={() => {
+                                if (typeof window !== 'undefined') {
+                                    window.open('https://medium.com/health-protocol/blockchain-health-scorecards-the-bridge-between-the-3-3-and-5-5-games-7db290dd0172', '_blank');
+                                }
+                            }}
                         >
                             Learn More
                         </Button>
@@ -422,7 +431,11 @@ export default function HealthScorecardExplorer() {
                                             variant="outline"
                                             size="sm"
                                             className="border-[#233B54] text-[#233B54] hover:bg-[#233B54] hover:text-white text-xs sm:text-sm flex-shrink-0 hover:scale-105 hover:shadow-lg transition-all duration-300 group/btn"
-                                            onClick={() => window.open(`https://sepolia.explorer.zksync.io/address/${community.address}`, '_blank')}
+                                            onClick={() => {
+                                                if (typeof window !== 'undefined') {
+                                                    window.open(`https://sepolia.explorer.zksync.io/address/${community.address}`, '_blank');
+                                                }
+                                            }}
                                         >
                                             <ExternalLink className="h-3 w-3 mr-1 group-hover/btn:scale-110 transition-transform duration-300" />
                                             <span className="hidden sm:inline">View on Explorer</span>
@@ -441,16 +454,22 @@ export default function HealthScorecardExplorer() {
                                 <h3 className="text-lg sm:text-xl font-bold text-[#233B54] mb-2 group-hover:text-[#1a2938] transition-colors duration-300">Community Growth Trends</h3>
                                 <p className="text-[#A63A2B] mb-4 text-sm sm:text-base group-hover:text-[#8b2f1e] transition-colors duration-300">Points and member growth over time</p>
                                 <div className="h-64 sm:h-80">
-                                    <ResponsiveContainer width="100%" height="100%">
-                                        <LineChart data={activityData}>
-                                            <CartesianGrid strokeDasharray="3 3" stroke="#F6F2D4" />
-                                            <XAxis dataKey="month" stroke="#A63A2B" fontSize={12} />
-                                            <YAxis stroke="#A63A2B" fontSize={12} />
-                                            <Tooltip />
-                                            <Line type="monotone" dataKey="points" stroke="#6DD6F2" strokeWidth={2} name="Points" />
-                                            <Line type="monotone" dataKey="members" stroke="#F6A23A" strokeWidth={2} name="Members" />
-                                        </LineChart>
-                                    </ResponsiveContainer>
+                                    {mounted ? (
+                                        <ResponsiveContainer width="100%" height="100%">
+                                            <LineChart data={activityData}>
+                                                <CartesianGrid strokeDasharray="3 3" stroke="#F6F2D4" />
+                                                <XAxis dataKey="month" stroke="#A63A2B" fontSize={12} />
+                                                <YAxis stroke="#A63A2B" fontSize={12} />
+                                                <Tooltip />
+                                                <Line type="monotone" dataKey="points" stroke="#6DD6F2" strokeWidth={2} name="Points" />
+                                                <Line type="monotone" dataKey="members" stroke="#F6A23A" strokeWidth={2} name="Members" />
+                                            </LineChart>
+                                        </ResponsiveContainer>
+                                    ) : (
+                                        <div className="h-full flex items-center justify-center bg-gray-100 rounded-lg">
+                                            <div className="text-gray-500">Loading chart...</div>
+                                        </div>
+                                    )}
                                 </div>
                             </div>
 
@@ -458,32 +477,38 @@ export default function HealthScorecardExplorer() {
                                 <h3 className="text-lg sm:text-xl font-bold text-[#233B54] mb-2 group-hover:text-[#1a2938] transition-colors duration-300">Game Theory Distribution</h3>
                                 <p className="text-[#A63A2B] mb-4 text-sm sm:text-base group-hover:text-[#8b2f1e] transition-colors duration-300">3,3 vs 5,5 cycle progression</p>
                                 <div className="h-64 sm:h-80">
-                                    <ResponsiveContainer width="100%" height="100%">
-                                        <PieChart>
-                                            <Pie
-                                                data={[
-                                                    { name: '3,3 Cooperative', value: 67, color: '#F6A23A' },
-                                                    { name: '5,5 Optimal', value: 33, color: '#6DD6F2' }
-                                                ]}
-                                                cx="50%"
-                                                cy="50%"
-                                                labelLine={false}
-                                                label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
-                                                outerRadius={window.innerWidth < 640 ? 60 : 80}
-                                                fill="#8884d8"
-                                                dataKey="value"
-                                                fontSize={window.innerWidth < 640 ? 10 : 12}
-                                            >
-                                                {[
-                                                    { name: '3,3 Cooperative', value: 67, color: '#F6A23A' },
-                                                    { name: '5,5 Optimal', value: 33, color: '#6DD6F2' }
-                                                ].map((entry, index) => (
-                                                    <Cell key={`cell-${index}`} fill={entry.color} />
-                                                ))}
-                                            </Pie>
-                                            <Tooltip />
-                                        </PieChart>
-                                    </ResponsiveContainer>
+                                    {mounted ? (
+                                        <ResponsiveContainer width="100%" height="100%">
+                                            <PieChart>
+                                                <Pie
+                                                    data={[
+                                                        { name: '3,3 Cooperative', value: 67, color: '#F6A23A' },
+                                                        { name: '5,5 Optimal', value: 33, color: '#6DD6F2' }
+                                                    ]}
+                                                    cx="50%"
+                                                    cy="50%"
+                                                    labelLine={false}
+                                                    label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
+                                                    outerRadius={70}
+                                                    fill="#8884d8"
+                                                    dataKey="value"
+                                                    fontSize={12}
+                                                >
+                                                    {[
+                                                        { name: '3,3 Cooperative', value: 67, color: '#F6A23A' },
+                                                        { name: '5,5 Optimal', value: 33, color: '#6DD6F2' }
+                                                    ].map((entry, index) => (
+                                                        <Cell key={`cell-${index}`} fill={entry.color} />
+                                                    ))}
+                                                </Pie>
+                                                <Tooltip />
+                                            </PieChart>
+                                        </ResponsiveContainer>
+                                    ) : (
+                                        <div className="h-full flex items-center justify-center bg-gray-100 rounded-lg">
+                                            <div className="text-gray-500">Loading chart...</div>
+                                        </div>
+                                    )}
                                 </div>
                             </div>
                         </div>
@@ -492,16 +517,22 @@ export default function HealthScorecardExplorer() {
                             <h3 className="text-lg sm:text-xl font-bold text-[#233B54] mb-2 group-hover:text-[#1a2938] transition-colors duration-300">Community Performance Metrics</h3>
                             <p className="text-[#A63A2B] mb-4 text-sm sm:text-base group-hover:text-[#8b2f1e] transition-colors duration-300">Comparative analysis across communities</p>
                             <div className="h-64 sm:h-80">
-                                <ResponsiveContainer width="100%" height="100%">
-                                    <BarChart data={mockCommunities}>
-                                        <CartesianGrid strokeDasharray="3 3" stroke="#F6F2D4" />
-                                        <XAxis dataKey="name" stroke="#A63A2B" fontSize={10} angle={-45} textAnchor="end" height={80} />
-                                        <YAxis stroke="#A63A2B" fontSize={12} />
-                                        <Tooltip />
-                                        <Bar dataKey="members" fill="#6DD6F2" name="Members" />
-                                        <Bar dataKey="interviews" fill="#F6A23A" name="Interviews" />
-                                    </BarChart>
-                                </ResponsiveContainer>
+                                {mounted ? (
+                                    <ResponsiveContainer width="100%" height="100%">
+                                        <BarChart data={mockCommunities}>
+                                            <CartesianGrid strokeDasharray="3 3" stroke="#F6F2D4" />
+                                            <XAxis dataKey="name" stroke="#A63A2B" fontSize={10} angle={-45} textAnchor="end" height={80} />
+                                            <YAxis stroke="#A63A2B" fontSize={12} />
+                                            <Tooltip />
+                                            <Bar dataKey="members" fill="#6DD6F2" name="Members" />
+                                            <Bar dataKey="interviews" fill="#F6A23A" name="Interviews" />
+                                        </BarChart>
+                                    </ResponsiveContainer>
+                                ) : (
+                                    <div className="h-full flex items-center justify-center bg-gray-100 rounded-lg">
+                                        <div className="text-gray-500">Loading chart...</div>
+                                    </div>
+                                )}
                             </div>
                         </div>
                     </TabsContent>
@@ -571,7 +602,11 @@ export default function HealthScorecardExplorer() {
                                     </Button>
                                     <Button
                                         variant="outline"
-                                        onClick={() => window.open('https://sepolia.explorer.zksync.io/address/0x9B9176569835749b3AE8D9d4F7C891fDA9DBE111', '_blank')}
+                                        onClick={() => {
+                                            if (typeof window !== 'undefined') {
+                                                window.open('https://sepolia.explorer.zksync.io/address/0x9B9176569835749b3AE8D9d4F7C891fDA9DBE111', '_blank');
+                                            }
+                                        }}
                                         className="border-[#233B54] text-[#233B54] hover:bg-[#233B54] hover:text-white text-sm sm:text-base flex-shrink-0"
                                     >
                                         <span className="hidden sm:inline">View on Explorer</span>
