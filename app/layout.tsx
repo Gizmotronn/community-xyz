@@ -3,6 +3,7 @@ import type { Metadata } from "next"
 import { Space_Grotesk, DM_Sans } from "next/font/google"
 import "./globals.css"
 import { ThirdwebProvider } from "thirdweb/react"
+import EthersLoader from "@/components/ethers-loader"
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -31,6 +32,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${spaceGrotesk.variable} ${dmSans.variable}`}>
       <body className="font-body antialiased">
+        <EthersLoader />
         <ThirdwebProvider>{children}</ThirdwebProvider>
       </body>
     </html>

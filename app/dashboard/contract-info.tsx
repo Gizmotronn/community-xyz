@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { ethers } from "ethers";
 
-// import contractJson from "../../hardhat/artifacts/contracts/CommunityReserve.sol/CommunityReserve.json";
+import contractJson from "../../hardhat/artifacts/contracts/CommunityReserve.sol/CommunityReserve.json";
 
 interface ContractData {
   owner: string;
