@@ -34,10 +34,9 @@ export interface HealthSharedMetrics {
     };
 }
 
-// Format community ID to readable name
 export function formatCommunityName(communityId: string): string {
     return communityId
-        .replace(/-\d+$/, '') // Remove trailing numbers
+        .replace(/-\d+$/, '')
         .split('-')
         .map(word => word.charAt(0).toUpperCase() + word.slice(1))
         .join(' ');
@@ -46,22 +45,50 @@ export function formatCommunityName(communityId: string): string {
 export async function fetchHealthSharedMetrics(): Promise<HealthSharedMetrics> {
     try {
         const response = await fetch(HEALTH_SHARED_API, {
-            cache: 'no-store' // Always fetch fresh data
+            cache: 'no-store',
+            headers: {
+                'Accept': 'application/json',
+            }
         });
 
         if (!response.ok) {
-            throw new Error(`API request failed: ${response.status}`);
+            throw new Error(`API request failed: ${response.status} ${response.statusText}`);
         }
 
         const data = await response.json();
 
-        // The API returns { metrics: { status, generatedAt, source, metrics: {...} } }
-        // So we need to unwrap it properly
-        if (data.metrics) {
-            return data.metrics;
+        console.log('Raw API response:', data);
+
+        // Handle double-nested metrics structure
+        if (data.metrics && data.metrics.metrics) {
+            return {
+                status: data.status || 'success',
+                generatedAt: data.metrics.generatedAt || new Date().toISOString(),
+                source: data.source || 'health-shared.com',
+                metrics: data.metrics.metrics
+            };
         }
 
-        return data; // Fallback if structure is different
+        // Handle single-nested structure
+        if (data.metrics) {
+            return data as HealthSharedMetrics;
+        }
+
+        // If data itself has the structure
+        if (data.communities) {
+            return {
+                status: 'success',
+                generatedAt: new Date().toISOString(),
+                source: 'health-shared.com',
+                metrics: {
+                    communities: data.communities,
+                    loginFrequency: data.loginFrequency || { updatedAt: new Date().toISOString(), monthly: [] }
+                }
+            };
+        }
+
+        throw new Error('Unexpected API response format');
+
     } catch (error) {
         console.error('Error fetching Health-Shared metrics:', error);
         throw error;
@@ -75,33 +102,7 @@ export function calculateGrowth(monthlyData: Array<{ month: string; users: numbe
     const previous = monthlyData[monthlyData.length - 2].users;
 
     if (previous === 0) return recent > 0 ? 100 : 0;
-    return Math.round(((recent - previous) / previous) * 100 * 10) / 10; // Round to 1 decimal
-}
-
-export function determineGameCycle(
-    members: number,
-    activeUsers: number,
-    interactions: number
-): { cycle: string; description: string } {
-    const activityRate = members > 0 ? (activeUsers / members) * 100 : 0;
-    const engagementRate = activeUsers > 0 ? interactions / activeUsers : 0;
-
-    if (activityRate > 50 && engagementRate > 10) {
-        return {
-            cycle: "5,5",
-            description: "Optimal collaboration - High engagement + High rewards"
-        };
-    } else if (activityRate > 25 || engagementRate > 5) {
-        return {
-            cycle: "3,3",
-            description: "Cooperative growth - Moderate engagement + Steady rewards"
-        };
-    } else {
-        return {
-            cycle: "2,2",
-            description: "Building momentum - Growing participation + Increasing rewards"
-        };
-    }
+    return Math.round(((recent - previous) / previous) * 100 * 10) / 10;
 }
 
 export function determineLocation(communityId: string): string {
@@ -142,14 +143,12 @@ export function getRecentActiveUsers(community: CommunityMetrics): number {
     return community.activeUsersMonthly[community.activeUsersMonthly.length - 1].users;
 }
 
-export function estimatePoints(totalInteractions: number): number {
-    return totalInteractions * 10;
-}
-
-export function estimateInterviews(totalInteractions: number): number {
-    return Math.floor(totalInteractions / 10);
-}
-
-export function estimateFundsRaised(members: number): number {
-    return members * 100;
+export function getLocationCoordinates(location: string): { lat: number; lng: number } {
+    const coords: Record<string, { lat: number; lng: number }> = {
+        'Maryland, USA': { lat: 39.0458, lng: -76.6413 },
+        'England, UK': { lat: 51.5074, lng: -0.1278 },
+        'Newcastle, UK': { lat: 54.9783, lng: -1.6178 },
+        'Global': { lat: 0, lng: 0 }
+    };
+    return coords[location] || { lat: 0, lng: 0 };
 }
