@@ -1,4 +1,5 @@
 import { ethers } from 'ethers';
+import { UserHashMappingService } from '@/utils/userHashMapping';
 
 const HEALTH_PROTOCOL_ABI = [
     {
@@ -54,6 +55,16 @@ export interface CommunityBlockchainData {
     lastActivity: number;
     pointsHistory: TimelineDataPoint[];
     allEvents: PointsEvent[];
+}
+
+// Interface for hash-based user data
+export interface CommunityMemberData {
+    healthSharedUserId: string;
+    email?: string;
+    blockchainUserId: string;
+    surrogateAddress: string;
+    points: number;
+    lastActivity: number;
 }
 
 export class BlockchainService {
@@ -148,7 +159,6 @@ export class BlockchainService {
                 dayData.events += 1;
             });
 
-            // Convert to sorted array
             const pointsHistory: TimelineDataPoint[] = Array.from(timelineMap.entries())
                 .map(([date, data]) => ({
                     date,
@@ -198,6 +208,88 @@ export class BlockchainService {
         return results;
     }
 
+    async communityHasBlockchainData(communityId: string): Promise<boolean> {
+        try {
+            const communityAddress = UserHashMappingService.generateCommunityAddress(communityId);
+            const filter = this.contract.filters.PointsAdded(communityAddress);
+            const events = await this.contract.queryFilter(filter, -1000);
+            return events.length > 0;
+        } catch {
+            return false;
+        }
+    }
+
+    /**
+     * Query blockchain for specific Health-Shared user using hash-based ID
+     */
+    async getUserPointsByHealthSharedId(
+        communityId: string,
+        healthSharedUserId: string,
+        email?: string
+    ): Promise<{ points: number; lastActivity: number; mapping: any }> {
+        const communityAddress = UserHashMappingService.generateCommunityAddress(communityId);
+        const mapping = UserHashMappingService.createUserMapping(
+            healthSharedUserId,
+            communityId,
+            email
+        );
+
+        try {
+            const [points, updatedAt] = await this.contract.getScoreCard(
+                communityAddress,
+                BigInt(mapping.blockchainUserId)
+            );
+
+            return {
+                points: Number(points),
+                lastActivity: Number(updatedAt),
+                mapping
+            };
+        } catch (error) {
+            return {
+                points: 0,
+                lastActivity: 0,
+                mapping
+            };
+        }
+    }
+
+    async batchGetUserPoints(
+        communityId: string,
+        users: Array<{ userId: string; email?: string }>
+    ): Promise<Map<string, CommunityMemberData>> {
+        const results = new Map<string, CommunityMemberData>();
+        const communityAddress = UserHashMappingService.generateCommunityAddress(communityId);
+
+        for (const user of users) {
+            const mapping = UserHashMappingService.createUserMapping(
+                user.userId,
+                communityId,
+                user.email
+            );
+
+            try {
+                const [points, updatedAt] = await this.contract.getScoreCard(
+                    communityAddress,
+                    BigInt(mapping.blockchainUserId)
+                );
+
+                results.set(user.userId, {
+                    healthSharedUserId: user.userId,
+                    email: user.email,
+                    blockchainUserId: mapping.blockchainUserId,
+                    surrogateAddress: mapping.surrogateAddress,
+                    points: Number(points),
+                    lastActivity: Number(updatedAt)
+                });
+            } catch (error) {
+
+            }
+        }
+
+        return results;
+    }
+
     getContractInfo() {
         return {
             address: SEPOLIA_CONTRACT_ADDRESS,
@@ -206,3 +298,5 @@ export class BlockchainService {
         };
     }
 }
+
+export default BlockchainService;

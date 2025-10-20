@@ -28,6 +28,8 @@ import {
     type TimelineDataPoint
 } from '@/app/services/blockchainService';
 
+import { UserHashMappingService } from '@/utils/userHashMapping';
+
 interface TransformedCommunity {
     id: string;
     name: string;
@@ -47,6 +49,8 @@ interface TransformedCommunity {
     firstActivity: string;
     lastActivity: string;
     coordinates: { lat: number; lng: number };
+    hashBasedAddress?: string;
+    accountAbstractionEnabled?: boolean;
 }
 
 export default function HealthScorecardExplorer() {
@@ -57,6 +61,9 @@ export default function HealthScorecardExplorer() {
     const [blockchainConnected, setBlockchainConnected] = useState(false);
     const [mounted, setMounted] = useState(false);
     const [activityData, setActivityData] = useState<any[]>([]);
+
+    const [healthSharedData, setHealthSharedData] = useState<HealthSharedMetrics | null>(null);
+
     const [globalStats, setGlobalStats] = useState({
         totalCommunities: 0,
         totalBlockchainPoints: 0,
@@ -73,13 +80,16 @@ export default function HealthScorecardExplorer() {
         setError(null);
 
         try {
-            console.log(' Loading REAL data (Health-Shared API + Blockchain)...');
+            console.log('Loading REAL data with Hash-Based Account Abstraction...');
 
             const blockchain = new BlockchainService();
             const isBlockchainConnected = await blockchain.testConnection();
             setBlockchainConnected(isBlockchainConnected);
 
             const healthSharedData: HealthSharedMetrics = await fetchHealthSharedMetrics();
+
+            setHealthSharedData(healthSharedData);
+
             console.log(`Health-Shared API: ${healthSharedData.metrics.communities.length} communities`);
 
             const communityAddresses = healthSharedData.metrics.communities.map(comm =>
@@ -88,12 +98,16 @@ export default function HealthScorecardExplorer() {
 
             let blockchainDataMap = new Map<string, CommunityBlockchainData>();
             if (isBlockchainConnected) {
-                console.log('Fetching blockchain data...');
+                console.log('Fetching blockchain data (trying old addresses first)...');
                 blockchainDataMap = await blockchain.getMultipleCommunities(communityAddresses);
-                console.log(`Blockchain: ${blockchainDataMap.size} communities processed`);
+                console.log(`   Old method: ${blockchainDataMap.size} communities processed`);
             }
 
-            const transformedCommunities: TransformedCommunity[] = healthSharedData.metrics.communities.map((comm: CommunityMetrics, index: number) => {
+            const transformedCommunities: TransformedCommunity[] = [];
+
+            for (let index = 0; index < healthSharedData.metrics.communities.length; index++) {
+                const comm = healthSharedData.metrics.communities[index];
+
                 const totalInteractions = getTotalInteractions(comm);
                 const activeUsers = getRecentActiveUsers(comm);
                 const growth = calculateGrowth(comm.activeUsersMonthly);
@@ -103,11 +117,55 @@ export default function HealthScorecardExplorer() {
                 const potentialAddress = communityAddresses[index].toLowerCase();
                 const blockchainData = blockchainDataMap.get(potentialAddress);
 
-                const hasBlockchainData = blockchainData && blockchainData.totalPoints > 0;
-                const blockchainPoints = hasBlockchainData ? blockchainData.totalPoints : 0;
-                const pointsHistory = hasBlockchainData ? blockchainData.pointsHistory : [];
+                const hashBasedAddress = UserHashMappingService.generateCommunityAddress(comm.communityId);
+                console.log(`\n ${comm.communityId}`);
+                console.log(`   Old Address: ${potentialAddress}`);
+                console.log(`   Hash Address: ${hashBasedAddress}`);
 
-                return {
+                let hasBlockchainData = blockchainData && blockchainData.totalPoints > 0;
+                let blockchainPoints = hasBlockchainData ? blockchainData.totalPoints : 0;
+                let pointsHistory = hasBlockchainData ? blockchainData.pointsHistory : [];
+                let firstActivity = 'No data';
+                let lastActivity = 'No data';
+
+                if (hasBlockchainData && blockchainData) {
+                    firstActivity = blockchainData.firstActivity > 0
+                        ? new Date(blockchainData.firstActivity * 1000).toLocaleDateString()
+                        : 'No data';
+                    lastActivity = blockchainData.lastActivity > 0
+                        ? new Date(blockchainData.lastActivity * 1000).toLocaleDateString()
+                        : 'No data';
+                }
+
+                if (!hasBlockchainData && isBlockchainConnected) {
+                    console.log(`   ℹ Checking hash-based address for data...`);
+                    const hasHashData = await blockchain.communityHasBlockchainData(comm.communityId);
+                    if (hasHashData) {
+                        console.log(`   Found data with hash-based address!`);
+                        hasBlockchainData = true;
+
+                        const sampleUsers = Array.from(
+                            { length: Math.min(comm.totals.members, 5) },
+                            (_, i) => ({
+                                userId: `user_${comm.communityId}_${i + 1}`,
+                                email: `user${i + 1}@example.com`
+                            })
+                        );
+
+                        const userPointsMap = await blockchain.batchGetUserPoints(
+                            comm.communityId,
+                            sampleUsers
+                        );
+
+                        blockchainPoints = 0;
+                        userPointsMap.forEach((userData) => {
+                            blockchainPoints += userData.points;
+                            console.log(`      User ${userData.healthSharedUserId}: ${userData.points} points`);
+                        });
+                    }
+                }
+
+                transformedCommunities.push({
                     id: comm.communityId,
                     name: formatCommunityName(comm.communityId),
                     address: potentialAddress,
@@ -123,15 +181,13 @@ export default function HealthScorecardExplorer() {
                     pointsHistory: pointsHistory,
                     hasBlockchainData: hasBlockchainData,
                     blockchainPoints: blockchainPoints,
-                    firstActivity: hasBlockchainData && blockchainData.firstActivity > 0
-                        ? new Date(blockchainData.firstActivity * 1000).toLocaleDateString()
-                        : 'No data',
-                    lastActivity: hasBlockchainData && blockchainData.lastActivity > 0
-                        ? new Date(blockchainData.lastActivity * 1000).toLocaleDateString()
-                        : 'No data',
-                    coordinates: coordinates
-                };
-            });
+                    firstActivity: firstActivity,
+                    lastActivity: lastActivity,
+                    coordinates: coordinates,
+                    hashBasedAddress: hashBasedAddress,
+                    accountAbstractionEnabled: true
+                });
+            }
 
             transformedCommunities.sort((a, b) => b.members - a.members);
 
@@ -142,7 +198,6 @@ export default function HealthScorecardExplorer() {
                 communitiesWithBlockchainData: transformedCommunities.filter(c => c.hasBlockchainData).length
             };
 
-            // Global timeline from blockchain data only
             const allTimelinePoints = transformedCommunities
                 .filter(c => c.pointsHistory.length > 0)
                 .flatMap(c => c.pointsHistory);
@@ -169,8 +224,8 @@ export default function HealthScorecardExplorer() {
             setActivityData(timeline);
             setLastUpdated(healthSharedData.generatedAt);
 
-            console.log('Data loaded successfully');
-            console.log('Stats:', stats);
+            console.log('\n Data loaded successfully with account abstraction support');
+            console.log(' Stats:', stats);
 
         } catch (err) {
             console.error('Error loading data:', err);
@@ -190,7 +245,7 @@ export default function HealthScorecardExplorer() {
                 <div className="text-center">
                     <RefreshCw className="h-12 w-12 animate-spin text-[#6DD6F2] mx-auto mb-4" />
                     <p className="text-white text-lg">Loading real data...</p>
-                    <p className="text-[#6DD6F2] text-sm mt-2">Health-Shared API + zkSync Sepolia blockchain</p>
+                    <p className="text-[#6DD6F2] text-sm mt-2">Health-Shared API + zkSync Sepolia blockchain + Hash-Based Account Abstraction</p>
                 </div>
             </div>
         );
@@ -221,11 +276,9 @@ export default function HealthScorecardExplorer() {
             <section className="w-full min-h-[350px] sm:min-h-[400px] lg:min-h-[450px] relative flex flex-col justify-center items-center overflow-hidden pt-12 sm:pt-16">
                 <div className="absolute inset-0 z-0" style={{ background: 'linear-gradient(120deg, #6DD6F2 60%, #F6A23A 40%)' }} />
                 <div className="relative z-10 p-4 sm:p-8 lg:p-12 flex flex-col items-center w-full max-w-7xl mx-auto">
-
                     <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-center tracking-tight mb-3 sm:mb-4 text-[#233B54] drop-shadow-lg px-2">
                         Health Scorecard Explorer
                     </h1>
-
                     <p className="text-sm sm:text-base text-[#233B54] text-center max-w-2xl mb-6">
                         Real-time community health metrics powered by blockchain transparency
                     </p>
@@ -236,19 +289,16 @@ export default function HealthScorecardExplorer() {
                             <div className="text-lg sm:text-xl lg:text-2xl font-bold text-[#233B54]">{globalStats.totalCommunities}</div>
                             <div className="text-xs sm:text-sm text-[#A63A2B] font-medium">Communities</div>
                         </div>
-
                         <div className="bg-white/80 backdrop-blur-sm rounded-xl sm:rounded-2xl p-3 sm:p-4 text-center shadow-lg hover:shadow-2xl hover:scale-105 transition-all duration-300">
                             <Users className="h-6 w-6 sm:h-8 sm:w-8 text-[#A06A8C] mx-auto mb-1 sm:mb-2" />
                             <div className="text-lg sm:text-xl lg:text-2xl font-bold text-[#233B54]">{globalStats.totalUsers.toLocaleString()}</div>
                             <div className="text-xs sm:text-sm text-[#A63A2B] font-medium">Active Members</div>
                         </div>
-
                         <div className="bg-white/80 backdrop-blur-sm rounded-xl sm:rounded-2xl p-3 sm:p-4 text-center shadow-lg hover:shadow-2xl hover:scale-105 transition-all duration-300">
                             <Database className="h-6 w-6 sm:h-8 sm:w-8 text-[#A63A2B] mx-auto mb-1 sm:mb-2" />
                             <div className="text-lg sm:text-xl lg:text-2xl font-bold text-[#233B54]">{globalStats.communitiesWithBlockchainData}</div>
                             <div className="text-xs sm:text-sm text-[#A63A2B] font-medium">With Blockchain Data</div>
                         </div>
-
                         <div className="bg-white/80 backdrop-blur-sm rounded-xl sm:rounded-2xl p-3 sm:p-4 text-center shadow-lg hover:shadow-2xl hover:scale-105 transition-all duration-300">
                             <Activity className="h-6 w-6 sm:h-8 sm:w-8 text-[#F6A23A] mx-auto mb-1 sm:mb-2" />
                             <div className="text-lg sm:text-xl lg:text-2xl font-bold text-[#233B54]">{globalStats.totalBlockchainPoints.toLocaleString()}</div>
@@ -259,6 +309,18 @@ export default function HealthScorecardExplorer() {
             </section>
 
             <div className="max-w-7xl mx-auto px-4 mb-6">
+                <div className="bg-gradient-to-r from-purple-50 to-blue-50 border-2 border-purple-200 rounded-xl p-4 mb-4">
+                    <div className="flex items-center gap-3">
+                        <div className="bg-purple-500 rounded-full w-3 h-3 animate-pulse"></div>
+                        <div className="flex-1">
+                            <p className="font-semibold text-purple-800"> Account Abstraction Active</p>
+                            <p className="text-xs text-purple-700">
+                                Using hash-based surrogate wallets • No wallet connection required • {communities.length} communities with generated addresses
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
                 {blockchainConnected && globalStats.totalBlockchainPoints === 0 && (
                     <div className="bg-yellow-50 border border-yellow-200 rounded-xl p-4 mb-4">
                         <div className="flex items-center gap-3">
@@ -298,9 +360,10 @@ export default function HealthScorecardExplorer() {
 
             <div className="max-w-7xl mx-auto px-2 sm:px-4 lg:px-6 pb-12 sm:pb-16 space-y-6 sm:space-y-8">
                 <Tabs defaultValue="communities" className="space-y-4 sm:space-y-6">
-                    <TabsList className="w-full bg-white/80 rounded-xl p-1 sm:p-2 shadow-lg h-auto grid grid-cols-4 gap-1">
+                    <TabsList className="w-full bg-white/80 rounded-xl p-1 sm:p-2 shadow-lg h-auto grid grid-cols-5 gap-1">
                         <TabsTrigger value="communities" className="rounded-lg data-[state=active]:bg-[#6DD6F2] text-xs sm:text-sm">Communities</TabsTrigger>
-                        <TabsTrigger value="map" className="rounded-lg data-[state=active]:bg-[#F6A23A] text-xs sm:text-sm">Global Map</TabsTrigger>
+                        <TabsTrigger value="engagement" className="rounded-lg data-[state=active]:bg-[#A06A8C] text-xs sm:text-sm">Engagement</TabsTrigger>
+                        <TabsTrigger value="map" className="rounded-lg data-[state=active]:bg-[#F6A23A] text-xs sm:text-sm">Map</TabsTrigger>
                         <TabsTrigger value="research" className="rounded-lg data-[state=active]:bg-[#A06A8C] text-xs sm:text-sm">Research</TabsTrigger>
                         <TabsTrigger value="analytics" className="rounded-lg data-[state=active]:bg-[#A63A2B] text-xs sm:text-sm">Analytics</TabsTrigger>
                     </TabsList>
@@ -318,13 +381,30 @@ export default function HealthScorecardExplorer() {
                                         {community.hasBlockchainData && (
                                             <Badge className="bg-green-500 text-white text-xs">Blockchain Active</Badge>
                                         )}
+                                        {community.accountAbstractionEnabled && (
+                                            <Badge className="bg-purple-500 text-white text-xs">Hash-Based</Badge>
+                                        )}
                                     </div>
                                 </div>
+
+                                {community.hashBasedAddress && (
+                                    <div className="bg-gradient-to-r from-purple-50 to-blue-50 border border-purple-200 rounded-lg p-3 mb-4">
+                                        <div className="flex items-start gap-2">
+                                            <div className="text-xs font-semibold text-purple-800 mb-1">Hash-Based Community Address:</div>
+                                        </div>
+                                        <div className="font-mono text-xs text-purple-600 break-all">
+                                            {community.hashBasedAddress}
+                                        </div>
+                                        <div className="text-xs text-purple-700 mt-2">
+                                            Account abstraction enabled - members represented without wallet connections
+                                        </div>
+                                    </div>
+                                )}
 
                                 {!community.hasBlockchainData && (
                                     <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 mb-4">
                                         <p className="text-xs text-blue-800 font-semibold">No blockchain data available yet for this community</p>
-                                        <p className="text-xs text-blue-700 mt-1">Showing verified Health-Shared API metrics only. Blockchain integration ready - awaiting community wallet address.</p>
+                                        <p className="text-xs text-blue-700 mt-1">Showing verified Health-Shared API metrics only. Hash-based addresses generated and ready for point tracking.</p>
                                     </div>
                                 )}
 
@@ -395,6 +475,160 @@ export default function HealthScorecardExplorer() {
                                 </div>
                             </div>
                         ))}
+                    </TabsContent>
+
+                    <TabsContent value="engagement" className="space-y-4">
+                        <Card className="p-6">
+                            <h3 className="text-xl font-bold text-[#233B54] mb-4">Global Content Interactions Over Time</h3>
+                            <div className="h-80">
+                                {mounted && healthSharedData && (() => {
+                                    const allInteractions = new Map<string, {
+                                        likes: number;
+                                        shares: number;
+                                        comments: number;
+                                        favorites: number;
+                                    }>();
+
+                                    healthSharedData.metrics.communities.forEach(comm => {
+                                        comm.contentInteractionsMonthly.forEach(month => {
+                                            if (!allInteractions.has(month.month)) {
+                                                allInteractions.set(month.month, {
+                                                    likes: 0,
+                                                    shares: 0,
+                                                    comments: 0,
+                                                    favorites: 0
+                                                });
+                                            }
+                                            const data = allInteractions.get(month.month)!;
+                                            data.likes += month.likes;
+                                            data.shares += month.shares;
+                                            data.comments += month.comments;
+                                            data.favorites += month.favorites;
+                                        });
+                                    });
+
+                                    const chartData = Array.from(allInteractions.entries())
+                                        .map(([month, data]) => ({
+                                            month,
+                                            ...data
+                                        }))
+                                        .sort((a, b) => a.month.localeCompare(b.month));
+
+                                    return chartData.length > 0 ? (
+                                        <ResponsiveContainer width="100%" height="100%">
+                                            <LineChart data={chartData}>
+                                                <CartesianGrid strokeDasharray="3 3" stroke="#F6F2D4" />
+                                                <XAxis
+                                                    dataKey="month"
+                                                    stroke="#A63A2B"
+                                                    fontSize={12}
+                                                    angle={-45}
+                                                    textAnchor="end"
+                                                    height={80}
+                                                />
+                                                <YAxis stroke="#A63A2B" fontSize={12} />
+                                                <Tooltip />
+                                                <Line type="monotone" dataKey="likes" stroke="#6DD6F2" strokeWidth={2} name="Likes" />
+                                                <Line type="monotone" dataKey="shares" stroke="#F6A23A" strokeWidth={2} name="Shares" />
+                                                <Line type="monotone" dataKey="comments" stroke="#A06A8C" strokeWidth={2} name="Comments" />
+                                                <Line type="monotone" dataKey="favorites" stroke="#A63A2B" strokeWidth={2} name="Favorites" />
+                                            </LineChart>
+                                        </ResponsiveContainer>
+                                    ) : (
+                                        <div className="h-full flex items-center justify-center bg-gray-100 rounded-lg">
+                                            <p className="text-gray-500">No interaction data available</p>
+                                        </div>
+                                    );
+                                })()}
+                            </div>
+                        </Card>
+
+                        <Card className="p-6">
+                            <h3 className="text-xl font-bold text-[#233B54] mb-4">Global User Engagement Patterns</h3>
+                            <div className="h-80">
+                                {mounted && healthSharedData && (() => {
+                                    const allSessions = new Map<string, number>();
+
+                                    healthSharedData.metrics.communities.forEach(comm => {
+                                        comm.sessionDurationBuckets.forEach(bucket => {
+                                            const current = allSessions.get(bucket.bucket) || 0;
+                                            allSessions.set(bucket.bucket, current + bucket.userCount);
+                                        });
+                                    });
+
+                                    const chartData = Array.from(allSessions.entries())
+                                        .map(([bucket, userCount]) => ({
+                                            bucket,
+                                            userCount
+                                        }))
+                                        .sort((a, b) => {
+                                            const order = ['0-1 minute', '1-5 minutes', '5-15 minutes', '15-30 minutes', '>30 minutes'];
+                                            return order.indexOf(a.bucket) - order.indexOf(b.bucket);
+                                        });
+
+                                    return chartData.length > 0 ? (
+                                        <ResponsiveContainer width="100%" height="100%">
+                                            <BarChart data={chartData}>
+                                                <CartesianGrid strokeDasharray="3 3" stroke="#F6F2D4" />
+                                                <XAxis
+                                                    dataKey="bucket"
+                                                    stroke="#A63A2B"
+                                                    fontSize={12}
+                                                    angle={-45}
+                                                    textAnchor="end"
+                                                    height={100}
+                                                />
+                                                <YAxis stroke="#A63A2B" fontSize={12} />
+                                                <Tooltip />
+                                                <Bar dataKey="userCount" fill="#6DD6F2" name="Users" />
+                                            </BarChart>
+                                        </ResponsiveContainer>
+                                    ) : (
+                                        <div className="h-full flex items-center justify-center bg-gray-100 rounded-lg">
+                                            <p className="text-gray-500">No session data available</p>
+                                        </div>
+                                    );
+                                })()}
+                            </div>
+                        </Card>
+
+                        <Card className="p-6">
+                            <h3 className="text-xl font-bold text-[#233B54] mb-4">Session Frequency Distribution</h3>
+                            <div className="h-80">
+                                {mounted && healthSharedData && (() => {
+                                    const allFrequency = new Map<string, number>();
+
+                                    healthSharedData.metrics.communities.forEach(comm => {
+                                        comm.sessionFrequencyBuckets.forEach(bucket => {
+                                            const current = allFrequency.get(bucket.bucket) || 0;
+                                            allFrequency.set(bucket.bucket, current + bucket.userCount);
+                                        });
+                                    });
+
+                                    const chartData = Array.from(allFrequency.entries())
+                                        .map(([bucket, userCount]) => ({
+                                            bucket,
+                                            userCount
+                                        }));
+
+                                    return chartData.length > 0 ? (
+                                        <ResponsiveContainer width="100%" height="100%">
+                                            <BarChart data={chartData}>
+                                                <CartesianGrid strokeDasharray="3 3" stroke="#F6F2D4" />
+                                                <XAxis dataKey="bucket" stroke="#A63A2B" fontSize={12} />
+                                                <YAxis stroke="#A63A2B" fontSize={12} />
+                                                <Tooltip />
+                                                <Bar dataKey="userCount" fill="#F6A23A" name="Users" />
+                                            </BarChart>
+                                        </ResponsiveContainer>
+                                    ) : (
+                                        <div className="h-full flex items-center justify-center bg-gray-100 rounded-lg">
+                                            <p className="text-gray-500">No frequency data available</p>
+                                        </div>
+                                    );
+                                })()}
+                            </div>
+                        </Card>
                     </TabsContent>
 
                     <TabsContent value="map" className="space-y-4">
