@@ -15,7 +15,7 @@ const CommunityLiquidity = () => {
                         className="relative transition-all duration-300 ease-in-out hover:scale-105 hover:-translate-y-2 cursor-pointer w-full max-w-[90%] sm:max-w-[500px] md:max-w-[550px] lg:max-w-[600px] xl:max-w-none xl:w-[637px] h-auto aspect-[637/577]"
                     >
                         <Image
-                            src="/landingPage/left_card.svg"
+                            src="/landingPage/left_card.png"
                             alt="Community Card"
                             width={637}
                             height={577}
@@ -60,7 +60,7 @@ const CommunityLiquidity = () => {
                         className="relative transition-all duration-300 ease-in-out hover:scale-105 hover:-translate-y-2 cursor-pointer w-full max-w-[90%] sm:max-w-[500px] md:max-w-[550px] lg:max-w-[600px] xl:max-w-none xl:w-[641px] h-auto aspect-[641/574]"
                     >
                         <Image
-                            src="/landingPage/right_card.svg"
+                            src="/landingPage/right_card.png"
                             alt="Liquidity Providers Card"
                             width={641}
                             height={574}

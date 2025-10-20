@@ -28,7 +28,7 @@ export function LitepaperSection() {
                     xl:w-[320px] xl:h-[559px]
                     z-0">
                     <Image
-                        src="/landingPage/left_icon.svg"
+                        src="/landingPage/left_icon.png"
                         alt="Lightpaper"
                         width={320}
                         height={559}
@@ -46,7 +46,7 @@ export function LitepaperSection() {
                     xl:w-[320px] xl:h-[559px]
                     z-0">
                     <Image
-                        src="/landingPage/right_icon.svg"
+                        src="/landingPage/right_icon.png"
                         alt="Lightpaper"
                         width={320}
                         height={559}

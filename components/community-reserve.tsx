@@ -38,7 +38,7 @@ export function CommunityReserve() {
 
             {/* Image */}
             <Image
-                src="/landingPage/community-reserve-icon.svg"
+                src="/landingPage/community-reserve-icon.png"
                 alt="Community Reserve Icon"
                 width={367}
                 height={240}

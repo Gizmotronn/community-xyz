@@ -34,7 +34,7 @@ export default function HomePage() {
       <div
         className="fixed inset-0 z-0 bg-black"
         style={{
-          backgroundImage: 'url(/landingPage/background.svg)',
+          backgroundImage: 'url(/landingPage/background.png)',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat'

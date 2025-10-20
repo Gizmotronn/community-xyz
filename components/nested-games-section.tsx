@@ -30,7 +30,7 @@ export default function NestedGamesSection() {
                     <div className="relative">
                         <div className="relative">
                             <img
-                                src="/landingPage/long_folder_icon.svg"
+                                src="/landingPage/long_folder_icon.png"
                                 alt="Folder"
                                 className="w-full h-auto"
                             />
@@ -113,7 +113,7 @@ export default function NestedGamesSection() {
                     <div className="relative">
                         <div className="relative">
                             <img
-                                src="/landingPage/long_folder_icon.svg"
+                                src="/landingPage/long_folder_icon.png"
                                 alt="Folder"
                                 className="w-full h-auto"
                             />

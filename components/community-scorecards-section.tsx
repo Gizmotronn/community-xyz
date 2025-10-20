@@ -39,7 +39,7 @@ export function CommunityScorecards() {
 
             {/* Image */}
             <Image
-                src="/landingPage/community_scorecard_icon.svg"
+                src="/landingPage/community_scorecard_icon.png"
                 alt="Community Scorecard Icon"
                 width={367}
                 height={240}

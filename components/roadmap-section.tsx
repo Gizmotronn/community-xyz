@@ -8,7 +8,7 @@ export function RoadmapSection() {
             <div className="relative flex items-center justify-center w-full max-w-[979px] mx-auto">
                 {/* Background Frame */}
                 <Image
-                    src="/landingPage/roadmap_icon.svg"
+                    src="/landingPage/roadmap_icon.png"
                     alt="Roadmap Section Frame"
                     width={979}
                     height={597}

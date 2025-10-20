@@ -41,7 +41,7 @@ export function HeroSection() {
                 <div
                   className="absolute inset-0 bg-center bg-no-repeat bg-contain"
                   style={{
-                    backgroundImage: 'url(/landingPage/folder.svg)',
+                    backgroundImage: 'url(/landingPage/hero-folder-icon.png)',
                   }}
                 />
 
@@ -55,7 +55,7 @@ export function HeroSection() {
                                lg:w-[240px] lg:h-[137px]
                                xl:w-[256px] xl:h-[146px]">
                   <Image
-                    src="/landingPage/logo_HS.svg"
+                    src="/landingPage/logo_HS.png"
                     alt="Health Shared"
                     fill
                     className="object-contain drop-shadow-lg"
@@ -88,7 +88,7 @@ export function HeroSection() {
                              xl:w-[186px] xl:h-[186px]
                              translate-y-0 xl:-translate-y-[65px]">
                 <Image
-                  src="/landingPage/chain.svg"
+                  src="/landingPage/chain.png"
                   alt="Connection"
                   fill
                   className="object-contain drop-shadow-2xl"
@@ -111,7 +111,7 @@ export function HeroSection() {
                 <div
                   className="absolute inset-0 bg-center bg-no-repeat bg-contain"
                   style={{
-                    backgroundImage: 'url(/landingPage/folder.svg)',
+                    backgroundImage: 'url(/landingPage/hero-folder-icon.png)',
                   }}
                 />
 
@@ -125,7 +125,7 @@ export function HeroSection() {
                                lg:w-[215px] lg:h-[116px]
                                xl:w-[229px] xl:h-[124px]">
                   <Image
-                    src="/landingPage/logo_HP.svg"
+                    src="/landingPage/logo_HP.png"
                     alt="Health Protocol"
                     fill
                     className="object-contain drop-shadow-lg"

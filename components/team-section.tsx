@@ -84,7 +84,7 @@ export function TeamSection() {
                                 <div
                                     className="absolute inset-0 transition-all duration-300 group-hover:drop-shadow-[0_5px_15px_rgba(255,255,255,0.2)]"
                                     style={{
-                                        backgroundImage: 'url(/landingPage/team-card.svg)',
+                                        backgroundImage: 'url(/landingPage/team-card.png)',
                                         backgroundSize: 'contain',
                                         backgroundPosition: 'center',
                                         backgroundRepeat: 'no-repeat',
@@ -227,7 +227,7 @@ export function TeamSection() {
                                 <div
                                     className="absolute inset-0 transition-all duration-300 group-hover:drop-shadow-[0_5px_15px_rgba(255,255,255,0.2)]"
                                     style={{
-                                        backgroundImage: 'url(/landingPage/team-card.svg)',
+                                        backgroundImage: 'url(/landingPage/team-card.png)',
                                         backgroundSize: 'contain',
                                         backgroundPosition: 'center',
                                         backgroundRepeat: 'no-repeat',

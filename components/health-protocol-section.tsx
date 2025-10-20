@@ -38,7 +38,7 @@ export function HealthProtocol() {
 
             {/* Image */}
             <Image
-                src="/landingPage/health_protocol_section_icon.svg"
+                src="/landingPage/health_protocol_section_icon.png"
                 alt="Health Protocol Section Icon"
                 width={367}
                 height={240}

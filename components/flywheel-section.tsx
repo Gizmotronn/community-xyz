@@ -6,15 +6,13 @@ import Image from 'next/image';
 const Flywheel = () => {
     return (
         <div className="relative w-full min-h-screen flex items-center justify-center pt-10 pb-20 px-4 sm:px-8 md:px-12 lg:px-16">
-
-
             <div className="w-full max-w-[1440px] mx-auto flex flex-col items-center justify-center">
-                {/* Title */}
+                {/* Title - Fully Responsive */}
                 <h1
-                    className="text-white text-center mb-6"
+                    className="text-white text-center mb-4 sm:mb-6"
                     style={{
                         fontFamily: 'Archivo Black',
-                        fontSize: '56px',
+                        fontSize: 'clamp(32px, 5vw, 56px)',
                         fontWeight: '700',
                         lineHeight: '103%',
                     }}
@@ -22,26 +20,26 @@ const Flywheel = () => {
                     The Flywheel
                 </h1>
 
-                {/* Subtitles */}
+                {/* Subtitles - Fully Responsive */}
                 <p
-                    className="text-white text-center mb-2"
+                    className="text-white text-center mb-1 sm:mb-2 px-2"
                     style={{
                         fontFamily: 'Roboto',
-                        fontSize: '26px',
+                        fontSize: 'clamp(16px, 2.5vw, 26px)',
                         fontWeight: '300',
-                        lineHeight: '103%',
+                        lineHeight: '120%',
                     }}
                 >
                     The more we collaborate, the more we all win.
                 </p>
 
                 <p
-                    className="text-white text-center mb-5"
+                    className="text-white text-center mb-4 sm:mb-5 px-2"
                     style={{
                         fontFamily: 'Roboto',
-                        fontSize: '26px',
+                        fontSize: 'clamp(16px, 2.5vw, 26px)',
                         fontWeight: '300',
-                        lineHeight: '103%',
+                        lineHeight: '120%',
                     }}
                 >
                     Flywheel up. Friction down. Let's go.
@@ -61,7 +59,7 @@ const Flywheel = () => {
                         >
                             <div className="relative w-full h-full">
                                 <Image
-                                    src="/landingPage/folder.svg"
+                                    src="/landingPage/folder.png"
                                     alt="Folder"
                                     width={204.5}
                                     height={186}
@@ -69,7 +67,7 @@ const Flywheel = () => {
                                 />
                                 <div className="absolute top-1 left-6 right-6 flex flex-col">
                                     <Image
-                                        src="/landingPage/community_participation.svg"
+                                        src="/landingPage/community_participation.png"
                                         alt="Community Participation"
                                         width={62}
                                         height={42}
@@ -88,7 +86,7 @@ const Flywheel = () => {
                             {/* Connection Point (Ellipse) - Animated */}
                             <div className="absolute ellipse-1" style={{ bottom: '-188px', right: '-27px', zIndex: 20 }}>
                                 <Image
-                                    src="/landingPage/ellipse.svg"
+                                    src="/landingPage/ellipse.png"
                                     alt="Connection"
                                     width={22}
                                     height={22}
@@ -100,7 +98,7 @@ const Flywheel = () => {
                         {/* Line 1: Community Participation to Better Scorecards (Animated) */}
                         <div className="absolute line-1" style={{ left: '162px', top: '108px', zIndex: 15, transform: 'rotate(1.75deg)', transformOrigin: 'left top' }}>
                             <Image
-                                src="/landingPage/line.svg"
+                                src="/landingPage/line.png"
                                 alt="Connection Line"
                                 width={120}
                                 height={5}
@@ -120,7 +118,7 @@ const Flywheel = () => {
                         >
                             <div className="relative w-full h-full">
                                 <Image
-                                    src="/landingPage/folder.svg"
+                                    src="/landingPage/folder.png"
                                     alt="Folder"
                                     width={204.5}
                                     height={188}
@@ -128,7 +126,7 @@ const Flywheel = () => {
                                 />
                                 <div className="absolute top-3 left-6 right-6 flex flex-col">
                                     <Image
-                                        src="/landingPage/community_growth.svg"
+                                        src="/landingPage/community_growth.png"
                                         alt="Community Growth"
                                         width={52}
                                         height={52}
@@ -147,7 +145,7 @@ const Flywheel = () => {
                             {/* Connection Point (Ellipse) - Animated */}
                             <div className="absolute ellipse-4" style={{ bottom: '2px', left: '87px', zIndex: 20 }}>
                                 <Image
-                                    src="/landingPage/ellipse.svg"
+                                    src="/landingPage/ellipse.png"
                                     alt="Connection"
                                     width={22}
                                     height={22}
@@ -159,7 +157,7 @@ const Flywheel = () => {
                         {/* Line 4: Better Incentives to Community Growth (Animated) */}
                         <div className="absolute line-4" style={{ left: '1214px', top: '306px', zIndex: 15, transform: 'rotate(243.6deg)', transformOrigin: 'left top' }}>
                             <Image
-                                src="/landingPage/line.svg"
+                                src="/landingPage/line.png"
                                 alt="Connection Line"
                                 width={122}
                                 height={5}
@@ -179,7 +177,7 @@ const Flywheel = () => {
                         >
                             <div className="relative w-full h-full">
                                 <Image
-                                    src="/landingPage/folder.svg"
+                                    src="/landingPage/folder.png"
                                     alt="Folder"
                                     width={204.5}
                                     height={187}
@@ -187,7 +185,7 @@ const Flywheel = () => {
                                 />
                                 <div className="absolute top-2 left-6 right-6 flex flex-col">
                                     <Image
-                                        src="/landingPage/better_scorecard.svg"
+                                        src="/landingPage/better_scorecard.png"
                                         alt="Better Scorecards"
                                         width={50}
                                         height={50}
@@ -206,7 +204,7 @@ const Flywheel = () => {
                             {/* Connection Point (Ellipse) - Animated */}
                             <div className="absolute ellipse-2" style={{ top: '230px', right: '-185px', zIndex: 20 }}>
                                 <Image
-                                    src="/landingPage/ellipse.svg"
+                                    src="/landingPage/ellipse.png"
                                     alt="Connection"
                                     width={22}
                                     height={22}
@@ -218,7 +216,7 @@ const Flywheel = () => {
                         {/* Line 2: Better Scorecards to More Funding (Animated) */}
                         <div className="absolute line-2" style={{ left: '457px', top: '367px', zIndex: 1, transform: 'rotate(-36.96deg)', transformOrigin: 'left top' }}>
                             <Image
-                                src="/landingPage/line.svg"
+                                src="/landingPage/line.png"
                                 alt="Connection Line"
                                 width={110}
                                 height={5}
@@ -238,7 +236,7 @@ const Flywheel = () => {
                         >
                             <div className="relative w-full h-full">
                                 <Image
-                                    src="/landingPage/folder.svg"
+                                    src="/landingPage/folder.png"
                                     alt="Folder"
                                     width={204.5}
                                     height={186}
@@ -246,7 +244,7 @@ const Flywheel = () => {
                                 />
                                 <div className="absolute top-3 left-6 right-6 flex flex-col">
                                     <Image
-                                        src="/landingPage/better_incentives.svg"
+                                        src="/landingPage/better_incentives.png"
                                         alt="Better Incentives"
                                         width={62}
                                         height={62}
@@ -265,7 +263,7 @@ const Flywheel = () => {
                             {/* Connection Point (Ellipse) - Animated */}
                             <div className="absolute ellipse-3" style={{ top: '158px', left: '-5px', zIndex: 20 }}>
                                 <Image
-                                    src="/landingPage/ellipse.svg"
+                                    src="/landingPage/ellipse.png"
                                     alt="Connection"
                                     width={22}
                                     height={22}
@@ -277,7 +275,7 @@ const Flywheel = () => {
                         {/* Line 3: More Funding to Better Incentives (Animated) */}
                         <div className="absolute line-3" style={{ left: '829px', top: '450px', zIndex: 15, transform: 'rotate(-79.22deg)', transformOrigin: 'left top' }}>
                             <Image
-                                src="/landingPage/line.svg"
+                                src="/landingPage/line.png"
                                 alt="Connection Line"
                                 width={115}
                                 height={5}
@@ -299,7 +297,7 @@ const Flywheel = () => {
                         >
                             <div className="relative w-full h-full">
                                 <Image
-                                    src="/landingPage/folder.svg"
+                                    src="/landingPage/folder.png"
                                     alt="Folder"
                                     width={204.5}
                                     height={186}
@@ -307,7 +305,7 @@ const Flywheel = () => {
                                 />
                                 <div className="absolute top-4 left-6 right-6 flex flex-col">
                                     <Image
-                                        src="/landingPage/more_funding.svg"
+                                        src="/landingPage/more_funding.png"
                                         alt="More Funding"
                                         width={54}
                                         height={54}

@@ -44,7 +44,7 @@ export function AdvisorsSection() {
                 }}
             >
                 <Image
-                    src="/landingPage/blue_earth.svg"
+                    src="/landingPage/blue_earth.png"
                     alt=""
                     width={256}
                     height={256}
@@ -64,7 +64,7 @@ export function AdvisorsSection() {
                 }}
             >
                 <Image
-                    src="/landingPage/red_earth.svg"
+                    src="/landingPage/red_earth.png"
                     alt=""
                     width={185}
                     height={215}
@@ -83,7 +83,7 @@ export function AdvisorsSection() {
                 }}
             >
                 <Image
-                    src="/landingPage/gradient_earth.svg"
+                    src="/landingPage/gradient_earth.png"
                     alt=""
                     width={268}
                     height={245}
@@ -120,7 +120,7 @@ export function AdvisorsSection() {
                                 <div
                                     className="absolute inset-0 transition-all duration-300 group-hover:drop-shadow-[0_5px_15px_rgba(255,255,255,0.2)]"
                                     style={{
-                                        backgroundImage: 'url(/landingPage/team-card.svg)',
+                                        backgroundImage: 'url(/landingPage/team-card.png)',
                                         backgroundSize: 'contain',
                                         backgroundPosition: 'center',
                                         backgroundRepeat: 'no-repeat',
