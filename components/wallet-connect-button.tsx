@@ -1,9 +1,3 @@
-
-declare global {
-  interface Window {
-    ethereum?: any;
-  }
-}
 "use client"
 
 import { ConnectButton } from "thirdweb/react"
@@ -13,6 +7,12 @@ import { Wallet, ArrowRight } from "lucide-react"
 import { useRouter } from "next/navigation"
 import { useActiveAccount } from "thirdweb/react"
 import { useEffect } from "react"
+
+declare global {
+  interface Window {
+    ethereum?: any;
+  }
+}
 
 const TEN_NETWORK_PARAMS = {
   chainId: "0x7E57",
@@ -53,7 +53,7 @@ export function WalletConnectButton() {
             params: [{ chainId: TEN_NETWORK_PARAMS.chainId }],
           });
         } catch (err) {
-          // Ignore if already added/switch failed
+          console.error("Network switch error:", err);
         }
         router.push("/dashboard")
       }
@@ -62,25 +62,29 @@ export function WalletConnectButton() {
   }, [account, router])
 
   return (
-    <ConnectButton
-      client={client}
-      wallets={wallets}
-      connectButton={{
-        label: (
-          <span className="flex items-center gap-2">
-            <Wallet className="h-5 w-5" />
-            Connect Wallet
-            <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
-          </span>
-        ),
-        className:
-          "group px-8 py-6 text-lg font-semibold web3-glow hover:scale-105 transition-all duration-300 bg-primary text-primary-foreground rounded-md flex items-center gap-2",
-      }}
-      connectModal={{
-        size: "wide",
-        title: "Connect to Health Protocol",
-        showThirdwebBranding: false,
-      }}
-    />
+    <div className="wallet-connect-container">
+      <ConnectButton
+        client={client}
+        wallets={wallets}
+        connectButton={{
+          label: "Connect Wallet",
+          className: "!w-[234px] !h-[44px] !rounded-lg !border-2 !border-white !bg-transparent !text-white !font-semibold !text-[16px] transition-all duration-200 hover:!bg-white hover:!text-black hover:opacity-90 hover:scale-105 active:scale-95 !shadow-lg !px-0 !py-0",
+          style: {
+            fontFamily: 'Noto Sans, sans-serif',
+            minWidth: '234px',
+            maxWidth: '234px',
+            height: '44px',
+            backgroundColor: 'transparent',
+            border: '2px solid white',
+            color: 'white',
+          }
+        }}
+        connectModal={{
+          size: "wide",
+          title: "Connect to Health Protocol",
+          showThirdwebBranding: false,
+        }}
+      />
+    </div>
   )
 }
