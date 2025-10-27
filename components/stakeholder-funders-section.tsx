@@ -7,7 +7,7 @@ export function StakeholderFunders() {
         <section className="w-full px-6 py-20 flex flex-col items-center">
             {/* Title */}
             <h2
-                className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white text-center mb-8 px-4"
+                className="text-3xl sm:text-4xl md:text-5xl lg:text-[56px] font-bold text-white text-center mb-8 px-4"
                 style={{ fontFamily: 'Archivo Black' }}
             >
                 Stakeholder Funders
@@ -15,7 +15,7 @@ export function StakeholderFunders() {
 
             {/* Subtitle */}
             <p
-                className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-white text-center mb-12 px-4"
+                className="text-xl sm:text-2xl md:text-3xl lg:text-[36px] text-white text-center mb-12 px-4"
                 style={{ fontFamily: 'Roboto' }}
             >
                 (5,5 Game Theory — Aligned Capital for Health)

@@ -5,10 +5,10 @@ import Image from 'next/image';
 
 const CommunityLiquidity = () => {
     return (
-        <div className="relative w-full min-h-screen flex items-center justify-center pt-10 pb-20 px-4 sm:px-8 md:px-12 lg:px-16">
+        <div className="relative w-full min-h-screen flex items-center justify-center pt-10 pb-10 px-4 sm:px-8 md:px-12 lg:px-16">
             <div className="w-full max-w-[1440px] mx-auto">
 
-                <div className="flex flex-col xl:flex-row justify-center items-center gap-8 xl:gap-6 2xl:gap-8 mb-20">
+                <div className="flex flex-col xl:flex-row justify-center items-center gap-8 xl:gap-6 2xl:gap-8">
 
                     {/* Card One - (3,3) For Community */}
                     <div

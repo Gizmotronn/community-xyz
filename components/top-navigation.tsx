@@ -3,11 +3,20 @@
 import { Button } from "@/components/ui/button"
 import { Menu, X } from "lucide-react"
 import { useState } from "react"
+import { usePathname, useRouter } from "next/navigation"
 
 export function TopNavigation() {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+    const pathname = usePathname()
+    const router = useRouter()
 
     const scrollToSection = (sectionId: string) => {
+        if (pathname !== '/') {
+            router.push(`/#${sectionId}`)
+            setIsMobileMenuOpen(false)
+            return
+        }
+
         const element = document.getElementById(sectionId)
         if (element) {
             const headerOffset = 63
@@ -22,8 +31,17 @@ export function TopNavigation() {
         setIsMobileMenuOpen(false)
     }
 
+    const handleScorecardClick = () => {
+        if (pathname === '/health-scorecard-explorer') {
+            window.scrollTo({ top: 0, behavior: 'smooth' })
+        } else {
+            router.push('/health-scorecard-explorer')
+        }
+        setIsMobileMenuOpen(false)
+    }
+
     return (
-        <nav className="fixed top-0 left-0 right-0 z-50 bg-white/10 border-b border-white/10 ">
+        <nav className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-white/5 border-b border-white/10">
             <div className="w-full h-[63px] flex items-center justify-between md:justify-center px-4 sm:px-6 md:px-8 relative">
 
                 <button
@@ -51,6 +69,12 @@ export function TopNavigation() {
                         Litepaper
                     </button>
                     <button
+                        onClick={handleScorecardClick}
+                        className="text-white font-['Noto_Sans'] text-sm font-semibold hover:text-white/80 transition-colors"
+                    >
+                        Scorecard
+                    </button>
+                    <button
                         onClick={() => scrollToSection("team")}
                         className="text-white font-['Noto_Sans'] text-sm font-semibold hover:text-white/80 transition-colors"
                     >
@@ -62,6 +86,7 @@ export function TopNavigation() {
                     >
                         Roadmap
                     </button>
+
                 </div>
 
                 <div className="hidden md:block absolute right-4 sm:right-6 lg:right-[100px]">
@@ -92,12 +117,12 @@ export function TopNavigation() {
                 <>
                     {/* Backdrop */}
                     <div
-                        className="fixed inset-0 bg-black/40  z-40 md:hidden"
+                        className="fixed inset-0 bg-black/40 z-40 md:hidden"
                         onClick={() => setIsMobileMenuOpen(false)}
                     />
 
                     {/* Menu Content */}
-                    <div className="absolute top-[63px] left-0 right-0 bg-[#242424]/95  border-b border-white/10 shadow-2xl z-40 md:hidden">
+                    <div className="absolute top-[63px] left-0 right-0 bg-[#242424]/95 border-b border-white/10 shadow-2xl z-40 md:hidden">
                         <div className="flex flex-col p-4 space-y-2">
                             <button
                                 onClick={() => scrollToSection("hero")}
@@ -112,6 +137,12 @@ export function TopNavigation() {
                                 Litepaper
                             </button>
                             <button
+                                onClick={handleScorecardClick}
+                                className="text-white font-['Noto_Sans'] text-sm font-semibold hover:text-white/80 hover:bg-white/5 transition-all py-3 px-4 rounded-lg text-left"
+                            >
+                                Scorecard
+                            </button>
+                            <button
                                 onClick={() => scrollToSection("team")}
                                 className="text-white font-['Noto_Sans'] text-sm font-semibold hover:text-white/80 hover:bg-white/5 transition-all py-3 px-4 rounded-lg text-left"
                             >
@@ -123,6 +154,7 @@ export function TopNavigation() {
                             >
                                 Roadmap
                             </button>
+
                         </div>
                     </div>
                 </>

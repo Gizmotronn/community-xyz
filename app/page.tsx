@@ -15,6 +15,7 @@ import { HlthToken } from "@/components/hlth-token-section";
 import { CommunityReserve } from "@/components/community-reserve";
 import { HealthProtocol } from "@/components/health-protocol-section";
 import { RoadmapSection } from "@/components/roadmap-section";
+import { FloatingNavigation } from "@/components/floating-navigation";
 
 export default function HomePage() {
   return (
@@ -42,7 +43,7 @@ export default function HomePage() {
       />
 
       <main className="relative z-10 min-h-screen text-gray-900 font-body">
-        <div className="flex flex-col gap-16 items-center w-full pt-[63px] pb-20">
+        <div className="flex flex-col gap-12 items-center w-full pt-[63px] pb-20">
           <HeroSection />
           <CommunityLiquidity />
           <VideoSection />

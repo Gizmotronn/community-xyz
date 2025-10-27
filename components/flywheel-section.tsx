@@ -5,7 +5,7 @@ import Image from 'next/image';
 
 const Flywheel = () => {
     return (
-        <div className="relative w-full min-h-screen flex items-center justify-center pt-10 pb-20 px-4 sm:px-8 md:px-12 lg:px-16">
+        <div className="relative w-full min-h-screen flex items-center justify-center pt-10 pb-10 px-4 sm:px-8 md:px-12 lg:px-16">
             <div className="w-full max-w-[1440px] mx-auto flex flex-col items-center justify-center">
                 {/* Title - Fully Responsive */}
                 <h1
