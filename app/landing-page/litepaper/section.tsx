@@ -31,7 +31,7 @@ export function LitepaperSection() {
                         xl:w-[320px] xl:h-[559px]
                         z-0">
                         <Image
-                            src="/landingPage/left_icon.png"
+                            src="/landingPage/left_icon.webp"
                             alt="Lightpaper"
                             width={320}
                             height={559}
@@ -49,7 +49,7 @@ export function LitepaperSection() {
                         xl:w-[320px] xl:h-[559px]
                         z-0">
                         <Image
-                            src="/landingPage/right_icon.png"
+                            src="/landingPage/right_icon.webp"
                             alt="Lightpaper"
                             width={320}
                             height={559}
@@ -76,7 +76,7 @@ export function LitepaperSection() {
                 </div>
 
                 {/* Button - Aligned to bottom of pods */}
-                <Link href="/landing-page/litepaper">
+                <Link href="/landing-page/litepaper#top">
                     <button
                         className="bg-[#6B7FFF] hover:bg-[#5566EE] text-black rounded-lg transition-colors duration-200 shadow-lg relative z-10 cursor-pointer"
                         style={{

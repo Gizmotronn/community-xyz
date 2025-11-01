@@ -38,7 +38,7 @@ export function CommunityReserve() {
 
             {/* Image */}
             <Image
-                src="/landingPage/community-reserve-icon.png"
+                src="/landingPage/community-reserve-icon.webp"
                 alt="Community Reserve Icon"
                 width={367}
                 height={240}

@@ -35,7 +35,7 @@ export function RoadmapSection() {
                                 top-[54%] sm:top-[55%] md:top-[55%] lg:top-[55%]
                                 left-[50%] -translate-x-1/2 -translate-y-1/2">
                     <Image
-                        src="/landingPage/roadmap.svg"
+                        src="/landingPage/roadmap.webp"
                         alt="Roadmap Timeline"
                         width={677}
                         height={382}
