@@ -7,7 +7,7 @@ const Flywheel = () => {
     return (
         <div className="relative w-full min-h-screen flex items-center justify-center pt-10 pb-10 px-4 sm:px-8 md:px-12 lg:px-16">
             <div className="w-full max-w-[1440px] mx-auto flex flex-col items-center justify-center">
-                {/* Title - Fully Responsive */}
+                {/* Title */}
                 <h1
                     className="text-white text-center mb-4 sm:mb-6"
                     style={{
@@ -20,7 +20,7 @@ const Flywheel = () => {
                     The Flywheel
                 </h1>
 
-                {/* Subtitles - Fully Responsive */}
+                {/* Subtitles */}
                 <p
                     className="text-white text-center mb-1 sm:mb-2 px-2"
                     style={{
@@ -183,7 +183,7 @@ const Flywheel = () => {
                                     height={187}
                                     className="object-contain"
                                 />
-                                <div className="absolute top-2 left-6 right-6 flex flex-col">
+                                <div className="absolute top-3 left-6 right-6 flex flex-col">
                                     <Image
                                         src="/landingPage/better_scorecard.png"
                                         alt="Better Scorecards"

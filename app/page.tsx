@@ -1,21 +1,20 @@
 "use client"
 
 import { TopNavigation } from "@/components/top-navigation";
-import { HeroSection } from "@/components/hero-section";
-import CommunityLiquidity from "@/components/community-liquidity-section";
-import { VideoSection } from "@/components/video-section";
-import Flywheel from "@/components/flywheel-section";
-import NestedGamesSection from "@/components/nested-games-section";
-import { LitepaperSection } from "@/components/litepaper_section";
-import { TeamSection } from "@/components/team-section";
-import { AdvisorsSection } from "@/components/advisors-section";
-import { CommunityScorecards } from "@/components/community-scorecards-section";
-import { StakeholderFunders } from "@/components/stakeholder-funders-section";
-import { HlthToken } from "@/components/hlth-token-section";
+import { HeroSection } from "./landing-page/hero-section";
+import CommunityLiquidity from "./landing-page/community-liquidity-section";
+import VideoSection from "./landing-page/video-section";
+import Flywheel from "./landing-page/flywheel-section";
+import NestedGamesSection from "./landing-page/nested-games-section";
+import { LitepaperSection } from "./landing-page/litepaper/section";
+import { TeamSection } from "./landing-page/team-section";
+import { AdvisorsSection } from "./landing-page/advisors-section";
+import { CommunityScorecards } from "./landing-page/community-scorecards-section";
+import { StakeholderFunders } from "./landing-page/stakeholder-funders-section";
+import { HlthToken } from "./landing-page/hlth-token-section";
 import { CommunityReserve } from "@/components/community-reserve";
-import { HealthProtocol } from "@/components/health-protocol-section";
-import { RoadmapSection } from "@/components/roadmap-section";
-import { FloatingNavigation } from "@/components/floating-navigation";
+import { HealthProtocol } from "./landing-page/health-protocol-section";
+import { RoadmapSection } from "./landing-page/roadmap-section";
 
 export default function HomePage() {
   return (
@@ -42,9 +41,9 @@ export default function HomePage() {
         }}
       />
 
-      <main className="relative z-10 min-h-screen text-gray-900 font-body">
-        <div className="flex flex-col gap-12 items-center w-full pt-[63px] pb-20">
-          <HeroSection />
+      <main className="relative z-10 min-h-screen text-gray-900 font-body overflow-x-hidden">
+        <div className="flex flex-col gap-12 items-center justify-center w-full max-w-[100vw] pt-[63px] pb-20 overflow-x-hidden">
+          <HeroSection/>
           <CommunityLiquidity />
           <VideoSection />
           <Flywheel />

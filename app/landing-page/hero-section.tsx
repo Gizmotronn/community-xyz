@@ -3,7 +3,7 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { WalletConnectButton } from './wallet-connect-button';
+import { WalletConnectButton } from '@/components/wallet-connect-button';
 
 
 export function HeroSection() {

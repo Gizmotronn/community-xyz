@@ -1,5 +1,6 @@
 "use client"
 
+import Link from "next/link";
 import Image from "next/image";
 
 export function LitepaperSection() {
@@ -75,20 +76,22 @@ export function LitepaperSection() {
                 </div>
 
                 {/* Button - Aligned to bottom of pods */}
-                <button
-                    className="bg-[#6B7FFF] hover:bg-[#5566EE] text-black rounded-lg transition-colors duration-200 shadow-lg relative z-10"
-                    style={{
-                        fontFamily: 'Noto Sans',
-                        fontWeight: 600,
-                        fontSize: 'clamp(13px, 2vw, 20px)',
-                        width: 'clamp(150px, 45vw, 234px)',
-                        height: 'clamp(38px, 9vw, 48px)',
-                        borderRadius: '10px',
-                        marginTop: '0px'
-                    }}
-                >
-                    Read our Litepaper
-                </button>
+                <Link href="/landing-page/litepaper">
+                    <button
+                        className="bg-[#6B7FFF] hover:bg-[#5566EE] text-black rounded-lg transition-colors duration-200 shadow-lg relative z-10 cursor-pointer"
+                        style={{
+                            fontFamily: 'Noto Sans',
+                            fontWeight: 600,
+                            fontSize: 'clamp(13px, 2vw, 20px)',
+                            width: 'clamp(150px, 45vw, 234px)',
+                            height: 'clamp(38px, 9vw, 48px)',
+                            borderRadius: '10px',
+                            marginTop: '0px'
+                        }}
+                    >
+                        Read our Litepaper
+                    </button>
+                </Link>
             </div>
         </section>
     );
