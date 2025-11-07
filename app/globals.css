@@ -4,77 +4,137 @@
 
 :root {
   /* Updated Health Protocol palette from images */
-  --background: #F6F1D5; /* Cream */
-  --foreground: #233B54; /* Navy */
-  --card: #FFFFFF; /* White for cards */
-  --card-foreground: #233B54; /* Navy */
+  --background: #F6F1D5;
+  /* Cream */
+  --foreground: #233B54;
+  /* Navy */
+  --card: #FFFFFF;
+  /* White for cards */
+  --card-foreground: #233B54;
+  /* Navy */
   --popover: #FFFFFF;
   --popover-foreground: #233B54;
-  --primary: #A46A8F; /* Mauve */
-  --primary-foreground: #F6F1D5; /* Cream */
-  --secondary: #6AD1E3; /* Cyan */
-  --secondary-foreground: #233B54; /* Navy */
-  --muted: #A13A2E; /* Rust */
-  --muted-foreground: #F6F1D5; /* Cream */
-  --accent: #F6A23A; /* Orange */
-  --accent-foreground: #233B54; /* Navy */
-  --destructive: #A13A2E; /* Rust */
-  --destructive-foreground: #F6F1D5; /* Cream */
-  --border: #233B54; /* Navy */
-  --input: #F6F1D5; /* Cream */
-  --ring: #6AD1E3; /* Cyan */
-  --chart-1: #A46A8F; /* Mauve */
-  --chart-2: #6AD1E3; /* Cyan */
-  --chart-3: #A13A2E; /* Rust */
-  --chart-4: #F6F1D5; /* Cream */
-  --chart-5: #F6A23A; /* Orange */
+  --primary: #A46A8F;
+  /* Mauve */
+  --primary-foreground: #F6F1D5;
+  /* Cream */
+  --secondary: #6AD1E3;
+  /* Cyan */
+  --secondary-foreground: #233B54;
+  /* Navy */
+  --muted: #A13A2E;
+  /* Rust */
+  --muted-foreground: #F6F1D5;
+  /* Cream */
+  --accent: #F6A23A;
+  /* Orange */
+  --accent-foreground: #233B54;
+  /* Navy */
+  --destructive: #A13A2E;
+  /* Rust */
+  --destructive-foreground: #F6F1D5;
+  /* Cream */
+  --border: #233B54;
+  /* Navy */
+  --input: #F6F1D5;
+  /* Cream */
+  --ring: #6AD1E3;
+  /* Cyan */
+  --chart-1: #A46A8F;
+  /* Mauve */
+  --chart-2: #6AD1E3;
+  /* Cyan */
+  --chart-3: #A13A2E;
+  /* Rust */
+  --chart-4: #F6F1D5;
+  /* Cream */
+  --chart-5: #F6A23A;
+  /* Orange */
   --radius: 0.75rem;
-  --sidebar: #233B54; /* Navy */
-  --sidebar-foreground: #F6F1D5; /* Cream */
-  --sidebar-primary: #A46A8F; /* Mauve */
-  --sidebar-primary-foreground: #F6F1D5; /* Cream */
-  --sidebar-accent: #F6A23A; /* Orange */
-  --sidebar-accent-foreground: #233B54; /* Navy */
-  --sidebar-border: #6AD1E3; /* Cyan */
-  --sidebar-ring: #A13A2E; /* Rust */
+  --sidebar: #233B54;
+  /* Navy */
+  --sidebar-foreground: #F6F1D5;
+  /* Cream */
+  --sidebar-primary: #A46A8F;
+  /* Mauve */
+  --sidebar-primary-foreground: #F6F1D5;
+  /* Cream */
+  --sidebar-accent: #F6A23A;
+  /* Orange */
+  --sidebar-accent-foreground: #233B54;
+  /* Navy */
+  --sidebar-border: #6AD1E3;
+  /* Cyan */
+  --sidebar-ring: #A13A2E;
+  /* Rust */
   --font-heading: "Space Grotesk", system-ui, sans-serif;
   --font-body: "DM Sans", system-ui, sans-serif;
 }
 
 .dark {
-  --background: #233B54; /* Navy */
-  --foreground: #F6F1D5; /* Cream */
-  --card: #233B54; /* Navy */
-  --card-foreground: #F6F1D5; /* Cream */
+  --background: #233B54;
+  /* Navy */
+  --foreground: #F6F1D5;
+  /* Cream */
+  --card: #233B54;
+  /* Navy */
+  --card-foreground: #F6F1D5;
+  /* Cream */
   --popover: #233B54;
   --popover-foreground: #F6F1D5;
-  --primary: #F6A23A; /* Orange */
-  --primary-foreground: #233B54; /* Navy */
-  --secondary: #A46A8F; /* Mauve */
-  --secondary-foreground: #F6F1D5; /* Cream */
-  --muted: #6AD1E3; /* Cyan */
-  --muted-foreground: #233B54; /* Navy */
-  --accent: #A13A2E; /* Rust */
-  --accent-foreground: #F6F1D5; /* Cream */
-  --destructive: #A13A2E; /* Rust */
-  --destructive-foreground: #F6F1D5; /* Cream */
-  --border: #F6F1D5; /* Cream */
-  --input: #233B54; /* Navy */
-  --ring: #A46A8F; /* Mauve */
-  --chart-1: #F6A23A; /* Orange */
-  --chart-2: #A46A8F; /* Mauve */
-  --chart-3: #6AD1E3; /* Cyan */
-  --chart-4: #A13A2E; /* Rust */
-  --chart-5: #F6F1D5; /* Cream */
+  --primary: #F6A23A;
+  /* Orange */
+  --primary-foreground: #233B54;
+  /* Navy */
+  --secondary: #A46A8F;
+  /* Mauve */
+  --secondary-foreground: #F6F1D5;
+  /* Cream */
+  --muted: #6AD1E3;
+  /* Cyan */
+  --muted-foreground: #233B54;
+  /* Navy */
+  --accent: #A13A2E;
+  /* Rust */
+  --accent-foreground: #F6F1D5;
+  /* Cream */
+  --destructive: #A13A2E;
+  /* Rust */
+  --destructive-foreground: #F6F1D5;
+  /* Cream */
+  --border: #F6F1D5;
+  /* Cream */
+  --input: #233B54;
+  /* Navy */
+  --ring: #A46A8F;
+  /* Mauve */
+  --chart-1: #F6A23A;
+  /* Orange */
+  --chart-2: #A46A8F;
+  /* Mauve */
+  --chart-3: #6AD1E3;
+  /* Cyan */
+  --chart-4: #A13A2E;
+  /* Rust */
+  --chart-5: #F6F1D5;
+  /* Cream */
   --radius: 0.75rem;
-  --sidebar: #A13A2E; /* Rust */
-  --sidebar-foreground: #F6F1D5; /* Cream */
-  --sidebar-primary: #F6A23A; /* Orange */
-  --sidebar-primary-foreground: #233B54; /* Navy */
-  --sidebar-accent: #6AD1E3; /* Cyan */
-  --sidebar-accent-foreground: #233B54; /* Navy */
-  --sidebar-border: #A46A8F; /* Mauve */
-  --sidebar-ring: #F6F1D5; /* Cream */
+  --sidebar: #A13A2E;
+  /* Rust */
+  --sidebar-foreground: #F6F1D5;
+  /* Cream */
+  --sidebar-primary: #F6A23A;
+  /* Orange */
+  --sidebar-primary-foreground: #233B54;
+  /* Navy */
+  --sidebar-accent: #6AD1E3;
+  /* Cyan */
+  --sidebar-accent-foreground: #233B54;
+  /* Navy */
+  --sidebar-border: #A46A8F;
+  /* Mauve */
+  --sidebar-ring: #F6F1D5;
+  /* Cream */
 }
 
 @layer base {
@@ -542,6 +602,137 @@
     .container {
       max-width: 100vw;
       overflow-x: hidden;
+    }
+  }
+
+  /* Google Doc Content Styles */
+  .google-doc-content {
+    font-family: 'Roboto', sans-serif;
+  }
+
+  .google-doc-content h1 {
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+    font-weight: 700;
+    margin: 2rem 0 1.5rem;
+    color: #5865F2;
+  }
+
+  .google-doc-content h2 {
+    font-size: clamp(1.25rem, 3.5vw, 2rem);
+    font-weight: 700;
+    margin: 1.75rem 0 1.25rem;
+    color: #00D7E9;
+  }
+
+  .google-doc-content h3 {
+    font-size: clamp(1.1rem, 3vw, 1.5rem);
+    font-weight: 600;
+    margin: 1.5rem 0 1rem;
+    color: #FF9400;
+  }
+
+  .google-doc-content p {
+    margin: 1rem 0;
+    font-size: clamp(0.875rem, 2vw, 1rem);
+    line-height: 1.8;
+  }
+
+  .google-doc-content ul,
+  .google-doc-content ol {
+    margin: 1rem 0;
+    padding-left: 1.5rem;
+  }
+
+  .google-doc-content li {
+    margin: 0.5rem 0;
+    font-size: clamp(0.875rem, 2vw, 1rem);
+  }
+
+  .google-doc-content img.google-doc-image {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 2rem auto;
+    border-radius: 12px;
+    border: 1px solid rgba(88, 101, 242, 0.2);
+    padding: 1rem;
+    background: #FFFFFF;
+  }
+
+  .google-doc-content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2rem 0;
+    background: rgba(36, 36, 36, 0.4);
+    border: 1px solid rgba(88, 101, 242, 0.3);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .google-doc-content th {
+    background: rgba(88, 101, 242, 0.15);
+    padding: 1rem;
+    text-align: left;
+    color: #5865F2;
+    font-weight: 600;
+    border: 1px solid rgba(88, 101, 242, 0.2);
+  }
+
+  .google-doc-content td {
+    padding: 1rem;
+    border: 1px solid rgba(88, 101, 242, 0.2);
+  }
+
+  .google-doc-content blockquote {
+    margin: 1.5rem 0;
+    padding: 1rem 1.5rem;
+    border-left: 4px solid #5865F2;
+    background: rgba(88, 101, 242, 0.1);
+    border-radius: 0 8px 8px 0;
+  }
+
+  .google-doc-content a {
+    color: #00D7E9;
+    text-decoration: underline;
+    transition: opacity 0.2s;
+  }
+
+  .google-doc-content a:hover {
+    opacity: 0.8;
+  }
+
+  .google-doc-content strong {
+    font-weight: 600;
+    color: #FF9400;
+  }
+
+  .google-doc-content em {
+    font-style: italic;
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  .animate-spin {
+    animation: spin 1s linear infinite;
+  }
+
+  @media (max-width: 640px) {
+    .google-doc-content h1 {
+      margin: 1.5rem 0 1rem;
+    }
+
+    .google-doc-content h2 {
+      margin: 1.25rem 0 0.75rem;
+    }
+
+    .google-doc-content img.google-doc-image {
+      margin: 1.5rem auto;
+      padding: 0.5rem;
     }
   }
 }

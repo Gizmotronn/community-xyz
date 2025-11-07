@@ -80,53 +80,45 @@ export default function HealthScorecardExplorer() {
         setError(null);
 
         try {
-            console.log('Loading REAL data with Hash-Based Account Abstraction...');
+            console.log(' Loading REAL data with Hash-Based Account Abstraction...');
 
             const blockchain = new BlockchainService();
             const isBlockchainConnected = await blockchain.testConnection();
             setBlockchainConnected(isBlockchainConnected);
 
             const healthSharedData: HealthSharedMetrics = await fetchHealthSharedMetrics();
-
             setHealthSharedData(healthSharedData);
 
-            console.log(`Health-Shared API: ${healthSharedData.metrics.communities.length} communities`);
+            console.log(` Health-Shared API: ${healthSharedData.metrics.communities.length} communities`);
 
-            const communityAddresses = healthSharedData.metrics.communities.map(comm =>
-                `0x${comm.communityId.split('-').pop()?.padStart(40, '0').slice(0, 40)}`
-            );
+            const communityIds = healthSharedData.metrics.communities.map(comm => comm.communityId);
 
             let blockchainDataMap = new Map<string, CommunityBlockchainData>();
             if (isBlockchainConnected) {
-                console.log('Fetching blockchain data (trying old addresses first)...');
-                blockchainDataMap = await blockchain.getMultipleCommunities(communityAddresses);
-                console.log(`   Old method: ${blockchainDataMap.size} communities processed`);
+                blockchainDataMap = await blockchain.getMultipleCommunitiesByIds(communityIds);
             }
 
             const transformedCommunities: TransformedCommunity[] = [];
 
-            for (let index = 0; index < healthSharedData.metrics.communities.length; index++) {
-                const comm = healthSharedData.metrics.communities[index];
-
+            for (const comm of healthSharedData.metrics.communities) {
                 const totalInteractions = getTotalInteractions(comm);
                 const activeUsers = getRecentActiveUsers(comm);
                 const growth = calculateGrowth(comm.activeUsersMonthly);
                 const location = determineLocation(comm.communityId);
                 const coordinates = getLocationCoordinates(location);
-
-                const potentialAddress = communityAddresses[index].toLowerCase();
-                const blockchainData = blockchainDataMap.get(potentialAddress);
+                const blockchainData = blockchainDataMap.get(comm.communityId);
+                const hasBlockchainData = blockchainData && blockchainData.totalPoints > 0;
+                const blockchainPoints = hasBlockchainData ? blockchainData.totalPoints : 0;
 
                 const hashBasedAddress = UserHashMappingService.generateCommunityAddress(comm.communityId);
-                console.log(`\n ${comm.communityId}`);
-                console.log(`   Old Address: ${potentialAddress}`);
-                console.log(`   Hash Address: ${hashBasedAddress}`);
 
-                let hasBlockchainData = blockchainData && blockchainData.totalPoints > 0;
-                let blockchainPoints = hasBlockchainData ? blockchainData.totalPoints : 0;
-                let pointsHistory = hasBlockchainData ? blockchainData.pointsHistory : [];
+                console.log(`\n ${comm.communityId}`);
+                console.log(` Hash Address: ${hashBasedAddress}`);
+                console.log(` Blockchain Points: ${blockchainPoints.toLocaleString()}`);
+
                 let firstActivity = 'No data';
                 let lastActivity = 'No data';
+                let pointsHistory: TimelineDataPoint[] = [];
 
                 if (hasBlockchainData && blockchainData) {
                     firstActivity = blockchainData.firstActivity > 0
@@ -135,40 +127,13 @@ export default function HealthScorecardExplorer() {
                     lastActivity = blockchainData.lastActivity > 0
                         ? new Date(blockchainData.lastActivity * 1000).toLocaleDateString()
                         : 'No data';
-                }
-
-                if (!hasBlockchainData && isBlockchainConnected) {
-                    console.log(`   ℹ Checking hash-based address for data...`);
-                    const hasHashData = await blockchain.communityHasBlockchainData(comm.communityId);
-                    if (hasHashData) {
-                        console.log(`   Found data with hash-based address!`);
-                        hasBlockchainData = true;
-
-                        const sampleUsers = Array.from(
-                            { length: Math.min(comm.totals.members, 5) },
-                            (_, i) => ({
-                                userId: `user_${comm.communityId}_${i + 1}`,
-                                email: `user${i + 1}@example.com`
-                            })
-                        );
-
-                        const userPointsMap = await blockchain.batchGetUserPoints(
-                            comm.communityId,
-                            sampleUsers
-                        );
-
-                        blockchainPoints = 0;
-                        userPointsMap.forEach((userData) => {
-                            blockchainPoints += userData.points;
-                            console.log(`      User ${userData.healthSharedUserId}: ${userData.points} points`);
-                        });
-                    }
+                    pointsHistory = blockchainData.pointsHistory;
                 }
 
                 transformedCommunities.push({
                     id: comm.communityId,
                     name: formatCommunityName(comm.communityId),
-                    address: potentialAddress,
+                    address: hashBasedAddress,
                     members: comm.totals.members,
                     location: location,
                     category: determineCategory(comm.communityId),
@@ -228,7 +193,7 @@ export default function HealthScorecardExplorer() {
             console.log(' Stats:', stats);
 
         } catch (err) {
-            console.error('Error loading data:', err);
+            console.error(' Error loading data:', err);
             setError('Failed to load community data. Please try again.');
         } finally {
             setLoading(false);
