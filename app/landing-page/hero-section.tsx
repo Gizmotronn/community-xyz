@@ -153,7 +153,7 @@ export function HeroSection() {
           <div className="relative z-50 flex flex-col sm:flex-row justify-center items-center 
                          pt-4 sm:pt-6 lg:pt-4 
                          gap-4 sm:gap-6 md:gap-8 lg:gap-10 xl:gap-12">
-            <Link href="https://discord.gg/health-protocol" target="_blank">
+            <Link href="https://discord.com/invite/nMqmSJSCzZ" target="_blank">
               <button
                 className="w-[234px] h-[44px] bg-[#5865F2] rounded-lg 
                            font-['Noto_Sans'] font-semibold text-[16px] text-black

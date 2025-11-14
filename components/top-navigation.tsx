@@ -94,7 +94,7 @@ export function TopNavigation() {
                         className="bg-[#5865F2] hover:bg-[#4752C4] text-[#242424] font-['Noto_Sans'] text-sm font-semibold px-4 lg:px-6 py-2 rounded-[10px] h-8 transition-colors"
                         asChild
                     >
-                        <a href="https://discord.gg/health-protocol" target="_blank" rel="noopener noreferrer">
+                        <a href="https://discord.com/invite/nMqmSJSCzZ" target="_blank" rel="noopener noreferrer">
                             Discord
                         </a>
                     </Button>
@@ -105,7 +105,7 @@ export function TopNavigation() {
                         className="bg-[#5865F2] hover:bg-[#4752C4] text-[#242424] font-['Noto_Sans'] text-xs sm:text-sm font-semibold px-3 sm:px-4 py-2 rounded-[10px] h-8 transition-colors"
                         asChild
                     >
-                        <a href="https://discord.gg/health-protocol" target="_blank" rel="noopener noreferrer">
+                        <a href="https://discord.com/invite/nMqmSJSCzZ" target="_blank" rel="noopener noreferrer">
                             Discord
                         </a>
                     </Button>

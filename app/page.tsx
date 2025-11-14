@@ -16,6 +16,7 @@ import { CommunityReserve } from "@/components/community-reserve";
 import { HealthProtocol } from "./landing-page/health-protocol-section";
 import { RoadmapSection } from "./landing-page/roadmap-section";
 import Image from 'next/image';
+import { Footer } from "../components/footer";
 
 export default function HomePage() {
   return (
@@ -43,7 +44,7 @@ export default function HomePage() {
       </div>
 
       <main className="relative z-10 min-h-screen text-gray-900 font-body overflow-x-hidden">
-        <div className="flex flex-col gap-12 items-center justify-center w-full max-w-[100vw] pt-[63px] pb-20 overflow-x-hidden">
+        <div className="flex flex-col gap-12 items-center justify-center w-full max-w-[100vw] pt-[63px] overflow-x-hidden">
           <HeroSection />
           <CommunityLiquidity />
           <VideoSection />
@@ -58,6 +59,7 @@ export default function HomePage() {
           <CommunityReserve />
           <HealthProtocol />
           <RoadmapSection />
+          <Footer />
         </div>
       </main>
     </>
