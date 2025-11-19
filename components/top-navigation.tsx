@@ -4,8 +4,15 @@ import { Button } from "@/components/ui/button"
 import { Menu, X } from "lucide-react"
 import { useState } from "react"
 import { usePathname, useRouter } from "next/navigation"
+import Link from "next/link"
 
-export function TopNavigation() {
+type NavigationVariant = 'landing' | 'health-protocol'
+
+interface TopNavigationProps {
+    variant?: NavigationVariant
+}
+
+export function TopNavigation({ variant = 'landing' }: TopNavigationProps) {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
     const pathname = usePathname()
     const router = useRouter()
@@ -31,13 +38,76 @@ export function TopNavigation() {
         setIsMobileMenuOpen(false)
     }
 
-    const handleScorecardClick = () => {
-        if (pathname === '/health-scorecard-explorer') {
-            window.scrollTo({ top: 0, behavior: 'smooth' })
-        } else {
-            router.push('/health-scorecard-explorer')
+    const landingNavItems = [
+        { label: 'Home', action: () => scrollToSection("hero") },
+        { label: 'Litepaper', action: () => scrollToSection("litepaper") },
+        { label: 'Team', action: () => scrollToSection("team") },
+        { label: 'Roadmap', action: () => scrollToSection("roadmap") },
+    ]
+
+    const healthProtocolNavItems = [
+        { label: 'Home', href: '/' },
+        { label: 'Staking', href: '/health-protocol-page/staking' },
+        { label: 'Explore Communities', href: '/health-protocol-page/explore-communities' },
+        { label: 'For Pharma', href: '/health-protocol-page/pharma' },
+    ]
+
+    const navItems = variant === 'health-protocol' ? healthProtocolNavItems : landingNavItems
+
+    const renderNavButton = (item: typeof navItems[0], index: number) => {
+        if ('href' in item && item.href) {
+            return (
+                <Link key={index} href={item.href}>
+                    <button className="group text-white font-['Noto_Sans'] text-sm font-semibold hover:text-white/80 transition-colors relative">
+                        <span className="relative inline-block">
+                            {item.label}
+                            <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-gradient-to-r from-[#00D7E9] to-[#FF9400] group-hover:w-full transition-all duration-300" />
+                        </span>
+                    </button>
+                </Link>
+            )
         }
-        setIsMobileMenuOpen(false)
+
+        return (
+            <button
+                key={index}
+                onClick={item.action}
+                className="group text-white font-['Noto_Sans'] text-sm font-semibold hover:text-white/80 transition-colors relative"
+            >
+                <span className="relative inline-block">
+                    {item.label}
+                    <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-gradient-to-r from-[#00D7E9] to-[#FF9400] group-hover:w-full transition-all duration-300" />
+                </span>
+            </button>
+        )
+    }
+
+    const renderMobileNavButton = (item: typeof navItems[0], index: number) => {
+        if ('href' in item && item.href) {
+            return (
+                <Link key={index} href={item.href} onClick={() => setIsMobileMenuOpen(false)}>
+                    <button className="group text-white font-['Noto_Sans'] text-sm font-semibold hover:text-white/80 hover:bg-white/5 transition-all py-3 px-4 rounded-lg text-left relative w-full">
+                        <span className="relative inline-block">
+                            {item.label}
+                            <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-gradient-to-r from-[#00D7E9] to-[#FF9400] group-hover:w-full transition-all duration-300" />
+                        </span>
+                    </button>
+                </Link>
+            )
+        }
+
+        return (
+            <button
+                key={index}
+                onClick={item.action}
+                className="group text-white font-['Noto_Sans'] text-sm font-semibold hover:text-white/80 hover:bg-white/5 transition-all py-3 px-4 rounded-lg text-left relative"
+            >
+                <span className="relative inline-block">
+                    {item.label}
+                    <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-gradient-to-r from-[#00D7E9] to-[#FF9400] group-hover:w-full transition-all duration-300" />
+                </span>
+            </button>
+        )
     }
 
     return (
@@ -56,42 +126,12 @@ export function TopNavigation() {
                 </button>
 
                 <div className="hidden md:flex items-center gap-6 lg:gap-[43px]">
-                    <button
-                        onClick={() => scrollToSection("hero")}
-                        className="text-white font-['Noto_Sans'] text-sm font-semibold hover:text-white/80 transition-colors"
-                    >
-                        Home
-                    </button>
-                    <button
-                        onClick={() => scrollToSection("litepaper")}
-                        className="text-white font-['Noto_Sans'] text-sm font-semibold hover:text-white/80 transition-colors"
-                    >
-                        Litepaper
-                    </button>
-                    <button
-                        onClick={handleScorecardClick}
-                        className="text-white font-['Noto_Sans'] text-sm font-semibold hover:text-white/80 transition-colors"
-                    >
-                        Scorecard
-                    </button>
-                    <button
-                        onClick={() => scrollToSection("team")}
-                        className="text-white font-['Noto_Sans'] text-sm font-semibold hover:text-white/80 transition-colors"
-                    >
-                        Team
-                    </button>
-                    <button
-                        onClick={() => scrollToSection("roadmap")}
-                        className="text-white font-['Noto_Sans'] text-sm font-semibold hover:text-white/80 transition-colors"
-                    >
-                        Roadmap
-                    </button>
-
+                    {navItems.map((item, index) => renderNavButton(item, index))}
                 </div>
 
                 <div className="hidden md:block absolute right-4 sm:right-6 lg:right-[100px]">
                     <Button
-                        className="bg-[#5865F2] hover:bg-[#4752C4] text-[#242424] font-['Noto_Sans'] text-sm font-semibold px-4 lg:px-6 py-2 rounded-[10px] h-8 transition-colors"
+                        className="bg-[#5865F2] hover:bg-[#4752C4] text-black font-['Noto_Sans'] text-sm font-semibold px-4 lg:px-6 py-2 rounded-[10px] h-8 transition-colors"
                         asChild
                     >
                         <a href="https://discord.com/invite/nMqmSJSCzZ" target="_blank" rel="noopener noreferrer">
@@ -102,7 +142,7 @@ export function TopNavigation() {
 
                 <div className="md:hidden">
                     <Button
-                        className="bg-[#5865F2] hover:bg-[#4752C4] text-[#242424] font-['Noto_Sans'] text-xs sm:text-sm font-semibold px-3 sm:px-4 py-2 rounded-[10px] h-8 transition-colors"
+                        className="bg-[#5865F2] hover:bg-[#4752C4] text-black font-['Noto_Sans'] text-xs sm:text-sm font-semibold px-3 sm:px-4 py-2 rounded-[10px] h-8 transition-colors"
                         asChild
                     >
                         <a href="https://discord.com/invite/nMqmSJSCzZ" target="_blank" rel="noopener noreferrer">
@@ -112,49 +152,16 @@ export function TopNavigation() {
                 </div>
             </div>
 
-            {/* Mobile Menu Dropdown */}
+            {/* Mobile Menu */}
             {isMobileMenuOpen && (
                 <>
-                    {/* Backdrop */}
                     <div
                         className="fixed inset-0 bg-black/40 z-40 md:hidden"
                         onClick={() => setIsMobileMenuOpen(false)}
                     />
-
-                    {/* Menu Content */}
                     <div className="absolute top-[63px] left-0 right-0 bg-[#242424]/95 border-b border-white/10 shadow-2xl z-40 md:hidden">
                         <div className="flex flex-col p-4 space-y-2">
-                            <button
-                                onClick={() => scrollToSection("hero")}
-                                className="text-white font-['Noto_Sans'] text-sm font-semibold hover:text-white/80 hover:bg-white/5 transition-all py-3 px-4 rounded-lg text-left"
-                            >
-                                Home
-                            </button>
-                            <button
-                                onClick={() => scrollToSection("litepaper")}
-                                className="text-white font-['Noto_Sans'] text-sm font-semibold hover:text-white/80 hover:bg-white/5 transition-all py-3 px-4 rounded-lg text-left"
-                            >
-                                Litepaper
-                            </button>
-                            <button
-                                onClick={handleScorecardClick}
-                                className="text-white font-['Noto_Sans'] text-sm font-semibold hover:text-white/80 hover:bg-white/5 transition-all py-3 px-4 rounded-lg text-left"
-                            >
-                                Scorecard
-                            </button>
-                            <button
-                                onClick={() => scrollToSection("team")}
-                                className="text-white font-['Noto_Sans'] text-sm font-semibold hover:text-white/80 hover:bg-white/5 transition-all py-3 px-4 rounded-lg text-left"
-                            >
-                                Team
-                            </button>
-                            <button
-                                onClick={() => scrollToSection("roadmap")}
-                                className="text-white font-['Noto_Sans'] text-sm font-semibold hover:text-white/80 hover:bg-white/5 transition-all py-3 px-4 rounded-lg text-left"
-                            >
-                                Roadmap
-                            </button>
-
+                            {navItems.map((item, index) => renderMobileNavButton(item, index))}
                         </div>
                     </div>
                 </>

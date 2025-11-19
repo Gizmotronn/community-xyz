@@ -15,26 +15,26 @@ export function HeroSection() {
           {/* Main Heading */}
           <h1
             className="text-center leading-[103%] text-white font-black font-roboto
-                       text-[32px] sm:text-[40px] md:text-[48px] lg:text-[52px] xl:text-[56px]
+                       text-[32px] sm:text-[36px] md:text-[42px] lg:text-[52px] xl:text-[56px]
                        px-4 sm:px-0"
           >
             Health isn't built in hospitals.<br />
             It's built in communities.
           </h1>
 
-          {/* Cards Row */}
-          <div className="flex flex-col xl:flex-row items-center justify-center 
-                         gap-8 sm:gap-12 md:gap-16 xl:gap-16 
+          {/* Cards Row - Better spacing for tablets */}
+          <div className="flex flex-col md:flex-row items-center justify-center 
+                         gap-6 sm:gap-8 md:gap-6 lg:gap-12 xl:gap-16 
                          w-full px-0 sm:px-4 mt-4 sm:mt-6 lg:mt-6">
 
             {/* LEFT CARD — Health Shared */}
-            <div className="relative w-full max-w-[280px] sm:max-w-[340px] md:max-w-[380px] lg:max-w-[410px] xl:max-w-[435px] flex flex-col items-center flex-shrink-0">
+            <Link href="https://health-shared.com/" target="_blank" className="relative w-full max-w-[280px] sm:max-w-[300px] md:max-w-[280px] lg:max-w-[360px] xl:max-w-[435px] flex flex-col items-center flex-shrink-0">
               <div
-                className="relative flex items-start justify-center transition-transform duration-300 hover:scale-105 hover:-translate-y-2
+                className="relative flex items-start justify-center transition-transform duration-300 hover:scale-105 hover:-translate-y-2 cursor-pointer
                            w-[280px] h-[256px] 
-                           sm:w-[340px] sm:h-[311px] 
-                           md:w-[380px] md:h-[347px]
-                           lg:w-[410px] lg:h-[375px]
+                           sm:w-[300px] sm:h-[274px] 
+                           md:w-[280px] md:h-[256px]
+                           lg:w-[360px] lg:h-[329px]
                            xl:w-[435px] xl:h-[398px]"
               >
                 {/* Folder Background */}
@@ -47,12 +47,12 @@ export function HeroSection() {
 
                 {/* Logo */}
                 <div className="absolute z-20 
-                               top-[19px] sm:top-[22px] md:top-[26px] lg:top-[28px] xl:top-[30px] 
+                               top-[19px] sm:top-[20px] md:top-[19px] lg:top-[24px] xl:top-[30px] 
                                left-1/2 -translate-x-[81%]
                                w-[164px] h-[94px] 
-                               sm:w-[199px] sm:h-[114px] 
-                               md:w-[222px] md:h-[127px]
-                               lg:w-[240px] lg:h-[137px]
+                               sm:w-[175px] sm:h-[100px] 
+                               md:w-[164px] md:h-[94px]
+                               lg:w-[211px] lg:h-[121px]
                                xl:w-[256px] xl:h-[146px]">
                   <Image
                     src="/landingPage/logo_HS.png"
@@ -65,28 +65,34 @@ export function HeroSection() {
 
                 {/* Description Text */}
                 <div className="absolute z-10 bottom-0 flex flex-col items-center justify-end 
-                               px-6 sm:px-7 md:px-7 lg:px-7 xl:px-8 
-                               pb-7 sm:pb-8 md:pb-9 lg:pb-9 xl:pb-10 
+                               px-6 sm:px-6 md:px-5 lg:px-7 xl:px-8 
+                               pb-7 sm:pb-7 md:pb-7 lg:pb-8 xl:pb-10 
                                text-center w-full">
                   <p className="font-roboto font-light text-[#E5E5E5] leading-[103%] 
-                               max-w-[192px] sm:max-w-[233px] md:max-w-[260px] lg:max-w-[281px] xl:max-w-[300px]
-                               text-[16px] sm:text-[20px] md:text-[22px] lg:text-[24px] xl:text-[25px]
+                               max-w-[192px] sm:max-w-[206px] md:max-w-[192px] lg:max-w-[247px] xl:max-w-[300px]
+                               text-[16px] sm:text-[17px] md:text-[16px] lg:text-[21px] xl:text-[25px]
                                -translate-x-[4%] -translate-y-[40%]">
                     Empowering communities using AI to ensure every voice is heard - building human capital.
                   </p>
+                  <p className="font-roboto font-light text-[#E1767D] underline leading-[103%] 
+                               max-w-[192px] sm:max-w-[206px] md:max-w-[192px] lg:max-w-[247px] xl:max-w-[300px]
+                               text-[16px] sm:text-[17px] md:text-[16px] lg:text-[21px] xl:text-[25px]
+                               -translate-x-[4%] -translate-y-[40%]">
+                    Enter
+                  </p>
                 </div>
               </div>
-            </div>
+            </Link>
 
-            {/* CHAIN ICON */}
-            <div className="flex items-center justify-center my-2 xl:my-0 xl:mt-[160px] flex-shrink-0">
+            {/* CHAIN ICON - Smaller on tablets */}
+            <div className="flex items-center justify-center my-2 md:my-0 md:mt-[80px] lg:mt-[130px] xl:mt-[160px] flex-shrink-0">
               <div className="relative 
                              w-[90px] h-[90px] 
-                             sm:w-[120px] sm:h-[120px] 
-                             md:w-[145px] md:h-[145px]
-                             lg:w-[165px] lg:h-[165px]
+                             sm:w-[100px] sm:h-[100px] 
+                             md:w-[100px] md:h-[100px]
+                             lg:w-[130px] lg:h-[130px]
                              xl:w-[186px] xl:h-[186px]
-                             translate-y-0 xl:-translate-y-[65px]">
+                             translate-y-0 md:-translate-y-[25px] lg:-translate-y-[45px] xl:-translate-y-[65px]">
                 <Image
                   src="/landingPage/chain.png"
                   alt="Connection"
@@ -98,13 +104,13 @@ export function HeroSection() {
             </div>
 
             {/* RIGHT CARD — Health Protocol */}
-            <div className="relative w-full max-w-[280px] sm:max-w-[340px] md:max-w-[380px] lg:max-w-[410px] xl:max-w-[435px] flex flex-col items-center flex-shrink-0">
+            <Link href="/health-protocol-page" className="relative w-full max-w-[280px] sm:max-w-[300px] md:max-w-[280px] lg:max-w-[360px] xl:max-w-[435px] flex flex-col items-center flex-shrink-0">
               <div
-                className="relative flex items-start justify-center transition-transform duration-300 hover:scale-105 hover:-translate-y-2
+                className="relative flex items-start justify-center transition-transform duration-300 hover:scale-105 hover:-translate-y-2 cursor-pointer
                            w-[280px] h-[256px] 
-                           sm:w-[340px] sm:h-[311px] 
-                           md:w-[380px] md:h-[347px]
-                           lg:w-[410px] lg:h-[375px]
+                           sm:w-[300px] sm:h-[274px] 
+                           md:w-[280px] md:h-[256px]
+                           lg:w-[360px] lg:h-[329px]
                            xl:w-[435px] xl:h-[398px]"
               >
                 {/* Folder Background */}
@@ -117,12 +123,12 @@ export function HeroSection() {
 
                 {/* Logo */}
                 <div className="absolute z-20 
-                               top-[15px] sm:top-[18px] md:top-[20px] lg:top-[22px] xl:top-[23px] 
+                               top-[15px] sm:top-[16px] md:top-[15px] lg:top-[19px] xl:top-[23px] 
                                left-[48%] -translate-x-[81%]
                                w-[147px] h-[80px] 
-                               sm:w-[179px] sm:h-[97px] 
-                               md:w-[199px] md:h-[108px]
-                               lg:w-[215px] lg:h-[116px]
+                               sm:w-[157px] sm:h-[85px] 
+                               md:w-[147px] md:h-[80px]
+                               lg:w-[189px] lg:h-[102px]
                                xl:w-[229px] xl:h-[124px]">
                   <Image
                     src="/landingPage/logo_HP.png"
@@ -135,18 +141,24 @@ export function HeroSection() {
 
                 {/* Description Text */}
                 <div className="absolute z-10 bottom-0 flex flex-col items-center justify-end 
-                               px-6 sm:px-7 md:px-7 lg:px-7 xl:px-8 
-                               pb-7 sm:pb-8 md:pb-9 lg:pb-9 xl:pb-10 
+                               px-6 sm:px-6 md:px-5 lg:px-7 xl:px-8 
+                               pb-7 sm:pb-7 md:pb-7 lg:pb-8 xl:pb-10 
                                text-center w-full">
                   <p className="font-roboto font-light text-[#E5E5E5] leading-[103%] 
-                               max-w-[212px] sm:max-w-[257px] md:max-w-[287px] lg:max-w-[310px] xl:max-w-[330px]
-                               text-[16px] sm:text-[20px] md:text-[22px] lg:text-[24px] xl:text-[25px]
+                               max-w-[212px] sm:max-w-[227px] md:max-w-[212px] lg:max-w-[272px] xl:max-w-[330px]
+                               text-[16px] sm:text-[17px] md:text-[16px] lg:text-[21px] xl:text-[25px]
                                -translate-x-[2%] -translate-y-[88%]">
                     Coordinating stakeholders and facilitating value transfer to aligned communities.
                   </p>
+                  <p className="font-roboto font-light text-[#00D7E9] underline leading-[103%] 
+                               max-w-[192px] sm:max-w-[206px] md:max-w-[192px] lg:max-w-[247px] xl:max-w-[300px]
+                               text-[16px] sm:text-[17px] md:text-[16px] lg:text-[21px] xl:text-[25px]
+                               -translate-x-[4%] -translate-y-[40%]">
+                    Enter
+                  </p>
                 </div>
               </div>
-            </div>
+            </Link>
           </div>
 
           {/* BUTTONS */}
