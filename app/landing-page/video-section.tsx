@@ -48,6 +48,7 @@ export function VideoSection() {
                         ref={videoRef}
                         className="w-full h-full object-cover"
                         src="https://storage.googleapis.com/health-shared-public/health_protocol/health_protocol.mp4"
+                        poster="/landingPage/video-thumbnail.png"
                         onPlay={() => setIsPlaying(true)}
                         onPause={() => setIsPlaying(false)}
                         onClick={handlePlayPause}

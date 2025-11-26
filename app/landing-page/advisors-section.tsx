@@ -44,7 +44,7 @@ export function AdvisorsSection() {
                 }}
             >
                 <Image
-                    src="/landingPage/blue_earth.png"
+                    src="/landingPage/blue_earth.webp"
                     alt=""
                     width={256}
                     height={256}
@@ -64,7 +64,7 @@ export function AdvisorsSection() {
                 }}
             >
                 <Image
-                    src="/landingPage/red_earth.png"
+                    src="/landingPage/red_earth.webp"
                     alt=""
                     width={185}
                     height={215}
@@ -83,7 +83,7 @@ export function AdvisorsSection() {
                 }}
             >
                 <Image
-                    src="/landingPage/gradient_earth.png"
+                    src="/landingPage/gradient_earth.webp"
                     alt=""
                     width={268}
                     height={245}

@@ -39,7 +39,7 @@ export function StakeholderFunders() {
 
             {/* Icon/Image */}
             <Image
-                src="/landingPage/stakholders_funders_icon.png"
+                src="/landingPage/stakholders_funders_icon.webp"
                 alt="Stakeholder Funders Icon"
                 width={472}
                 height={271}

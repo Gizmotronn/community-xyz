@@ -39,7 +39,7 @@ export function HlthToken() {
 
             {/* Image */}
             <Image
-                src="/landingPage/the_hlth_token.png"
+                src="/landingPage/the_hlth_token.webp"
                 alt="Hlth Token Icon"
                 width={367}
                 height={240}
