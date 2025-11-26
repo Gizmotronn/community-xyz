@@ -13,6 +13,8 @@ build/
 # Hardhat artifacts and cache
 hardhat/cache/
 hardhat/artifacts/
+hardhat/artifacts-zk
+hardhat/cache-zk
 hardhat/typechain/
 hardhat/typechain-types/
 hardhat/coverage/

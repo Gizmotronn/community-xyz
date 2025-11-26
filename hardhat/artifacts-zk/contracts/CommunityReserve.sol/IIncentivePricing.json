@@ -1,0 +1,69 @@
+{
+  "_format": "hh-zksolc-artifact-1",
+  "contractName": "IIncentivePricing",
+  "sourceName": "contracts/CommunityReserve.sol",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "community",
+          "type": "address"
+        },
+        {
+          "internalType": "enum IIncentivePricing.IncentiveType",
+          "name": "incentiveType",
+          "type": "uint8"
+        }
+      ],
+      "name": "calculateIncentivePrice",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "community",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "newMemberCount",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "newInterviews",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "newReferrals",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "newFundsRaised",
+          "type": "uint256"
+        }
+      ],
+      "name": "updateCommunityData",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "linkReferences": {},
+  "deployedLinkReferences": {},
+  "factoryDeps": {}
+}
