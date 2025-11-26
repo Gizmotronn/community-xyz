@@ -1,3 +1,4 @@
+
 "use client"
 
 import { TopNavigation } from "@/components/top-navigation";
@@ -15,7 +16,8 @@ import { HlthToken } from "./landing-page/hlth-token-section";
 import { CommunityReserve } from "@/components/community-reserve";
 import { HealthProtocol } from "./landing-page/health-protocol-section";
 import { RoadmapSection } from "./landing-page/roadmap-section";
-import Image from 'next/image';
+import { Footer } from "../components/footer";
+import { AnimatedBackground } from "@/components/animated-background";
 
 export default function HomePage() {
   return (
@@ -31,19 +33,10 @@ export default function HomePage() {
       {/* Fixed Top Navigation */}
       <TopNavigation />
 
-      {/* Fixed Background */}
-      <div className="fixed inset-0 z-0">
-        <Image
-          src="/landingPage/background.webp"
-          alt="Background"
-          fill
-          priority
-          className="object-cover"
-        />
-      </div>
+      <AnimatedBackground />
 
       <main className="relative z-10 min-h-screen text-gray-900 font-body overflow-x-hidden">
-        <div className="flex flex-col gap-12 items-center justify-center w-full max-w-[100vw] pt-[63px] pb-20 overflow-x-hidden">
+        <div className="flex flex-col gap-12 items-center justify-center w-full max-w-[100vw] pt-[63px] overflow-x-hidden">
           <HeroSection />
           <CommunityLiquidity />
           <VideoSection />
@@ -58,6 +51,7 @@ export default function HomePage() {
           <CommunityReserve />
           <HealthProtocol />
           <RoadmapSection />
+          <Footer />
         </div>
       </main>
     </>

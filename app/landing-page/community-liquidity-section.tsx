@@ -5,14 +5,16 @@ import Image from 'next/image';
 
 const CommunityLiquidity = () => {
     return (
-        <div className="relative w-full min-h-screen flex items-center justify-center pt-10 pb-10 px-4 sm:px-8 md:px-12 lg:px-16">
+        <div className="relative w-full min-h-screen flex items-center justify-center pt-10 pb-12 sm:pb-16 lg:pb-20 px-4 sm:px-8 lg:px-16">
             <div className="w-full max-w-[1440px] mx-auto">
 
-                <div className="flex flex-col xl:flex-row justify-center items-center gap-8 xl:gap-6 2xl:gap-8">
+                <div className="flex flex-col md:flex-row justify-center items-center gap-6 sm:gap-8 md:gap-6 lg:gap-8 xl:gap-6 2xl:gap-8">
 
                     {/* Card One - (3,3) For Community */}
                     <div
-                        className="relative transition-all duration-300 ease-in-out hover:scale-105 hover:-translate-y-2 cursor-pointer w-full max-w-[90%] sm:max-w-[500px] md:max-w-[550px] lg:max-w-[600px] xl:max-w-none xl:w-[637px] h-auto aspect-[637/577]"
+                        className="relative transition-all duration-300 ease-in-out hover:scale-105 hover:-translate-y-2 cursor-pointer 
+                                   w-full max-w-[280px] sm:max-w-[340px] md:max-w-[280px] lg:max-w-[420px] xl:max-w-none 
+                                   xl:w-[637px] h-auto aspect-[637/577] flex-shrink-0"
                     >
                         <Image
                             src="/landingPage/left_card.webp"
@@ -23,7 +25,8 @@ const CommunityLiquidity = () => {
                             priority
                         />
                         <div
-                            className="absolute top-[18%] left-1/2 -translate-x-1/2 scale-[0.58] sm:scale-90 md:scale-95 lg:scale-100"
+                            className="absolute top-[18%] left-1/2 -translate-x-1/2 
+                                       scale-[0.45] xs:scale-[0.50] sm:scale-[0.60] md:scale-[0.58] lg:scale-[0.75] xl:scale-90 2xl:scale-100"
                         >
                             {/* Outer Box */}
                             <div
@@ -40,7 +43,7 @@ const CommunityLiquidity = () => {
                                     }}
                                 >
                                     <span
-                                        className="text-white whitespace-nowrap text-[22px] sm:text-[26px] md:text-[28px] lg:text-[32px]"
+                                        className="text-white whitespace-nowrap text-[32px]"
                                         style={{
                                             fontFamily: 'Bruno Ace',
                                             fontWeight: 400,
@@ -57,7 +60,9 @@ const CommunityLiquidity = () => {
 
                     {/* Card Two - (5,5) For Liquidity Providers */}
                     <div
-                        className="relative transition-all duration-300 ease-in-out hover:scale-105 hover:-translate-y-2 cursor-pointer w-full max-w-[90%] sm:max-w-[500px] md:max-w-[550px] lg:max-w-[600px] xl:max-w-none xl:w-[641px] h-auto aspect-[641/574]"
+                        className="relative transition-all duration-300 ease-in-out hover:scale-105 hover:-translate-y-2 cursor-pointer 
+                                   w-full max-w-[280px] sm:max-w-[340px] md:max-w-[280px] lg:max-w-[420px] xl:max-w-none 
+                                   xl:w-[641px] h-auto aspect-[641/574] flex-shrink-0"
                     >
                         <Image
                             src="/landingPage/right_card.webp"
@@ -68,7 +73,8 @@ const CommunityLiquidity = () => {
                             priority
                         />
                         <div
-                            className="absolute top-[17%] left-1/2 -translate-x-1/2 scale-[0.58] sm:scale-90 md:scale-95 lg:scale-100"
+                            className="absolute top-[17%] left-1/2 -translate-x-1/2 
+                                       scale-[0.45] xs:scale-[0.50] sm:scale-[0.60] md:scale-[0.58] lg:scale-[0.75] xl:scale-90 2xl:scale-100"
                         >
                             {/* Outer Box */}
                             <div
@@ -85,7 +91,7 @@ const CommunityLiquidity = () => {
                                     }}
                                 >
                                     <span
-                                        className="text-white whitespace-nowrap text-[24px] sm:text-[28px] md:text-[32px] lg:text-[36px]"
+                                        className="text-white whitespace-nowrap text-[36px]"
                                         style={{
                                             fontFamily: 'Bruno Ace',
                                             fontWeight: 400,
@@ -96,7 +102,7 @@ const CommunityLiquidity = () => {
                                         (5,5) For Liquidity
                                     </span>
                                     <span
-                                        className="text-white whitespace-nowrap text-[24px] sm:text-[28px] md:text-[32px] lg:text-[36px]"
+                                        className="text-white whitespace-nowrap text-[36px]"
                                         style={{
                                             fontFamily: 'Bruno Ace',
                                             fontWeight: 400,
