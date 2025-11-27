@@ -8,33 +8,33 @@ const advisorsMembers = [
         name: 'Professor Nadey Hakim',
         title: 'Head of Health KOL Relationships',
         description: 'World renowned transplant surgeon, past VP of the Royal Society of Medicine, International relations lead at Cleveland Clinic London.',
-        image: '/landingPage/nadey-hakim.png'
+        image: '/landingPage/nadey-hakim.webp'
     },
     {
         name: 'Neil Meltzer',
         title: 'President & CEO at LifeBridge Health',
         description: 'President & CEO at LifeBridge Health since 2013. Former President at Sinai Hospital. Past National Board Chair, American Heart Association.',
-        image: '/landingPage/neil-meltzer.png'
+        image: '/landingPage/neil-meltzer.webp'
     },
     {
         name: 'Sir Richard Sykes',
         title: 'Advisor',
         description: 'Chairman of The Royal Institution of Great Britain, Imperial College Healthcare NHS Trust, UK Stem Cell Foundation, and more. Fellow of multiple prestigious organizations.',
-        image: '/landingPage/richard-sykes.png'
+        image: '/landingPage/richard-sykes.webp'
     },
     {
         name: 'Robert Pleticha',
         title: 'Patient Engagement Specialist',
         description: 'Patient engagement expert with 10+ years experience, integrating patient perspectives into clinical development for transformative healthcare solutions.',
-        image: '/landingPage/robert-pleticha.png'
+        image: '/landingPage/robert-pleticha.webp'
     },
 ];
 
 export function AdvisorsSection() {
     return (
-        <section className="relative w-full flex items-center justify-center py-20 px-4 overflow-hidden">
+        <section id="advisors" className="relative w-full flex items-center justify-center py-10 sm:py-12 md:py-16 lg:py-20 px-4 overflow-hidden">
             <div
-                className="absolute pointer-events-none"
+                className="absolute pointer-events-none hidden lg:block"
                 style={{
                     top: '28px',
                     left: '155px',
@@ -53,7 +53,7 @@ export function AdvisorsSection() {
             </div>
 
             <div
-                className="absolute pointer-events-none"
+                className="absolute pointer-events-none hidden lg:block"
                 style={{
                     bottom: '-19px',
                     left: '48%',
@@ -73,7 +73,7 @@ export function AdvisorsSection() {
             </div>
 
             <div
-                className="absolute pointer-events-none"
+                className="absolute pointer-events-none hidden lg:block"
                 style={{
                     bottom: '-45px',
                     right: '85px',
@@ -94,10 +94,9 @@ export function AdvisorsSection() {
             <div className="relative z-10 container mx-auto max-w-[1440px]">
                 {/* Title */}
                 <h2
-                    className="text-center text-white font-black mb-32"
+                    className="text-center text-white font-black mb-8 sm:mb-12 md:mb-20 lg:mb-32 text-3xl sm:text-4xl md:text-5xl lg:text-[56px]"
                     style={{
                         fontFamily: 'Archivo Black',
-                        fontSize: '56px',
                         lineHeight: '103%',
                     }}
                 >
@@ -105,22 +104,18 @@ export function AdvisorsSection() {
                 </h2>
 
                 {/* Team Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-y-16 mb-14">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-y-8 sm:gap-y-12 md:gap-y-16 mb-8 sm:mb-10 md:mb-14">
                     {/* First Row - 4 cards */}
                     {advisorsMembers.slice(0, 4).map((member, index) => (
                         <div key={index} className="relative flex items-center justify-center group">
                             <div
-                                className="relative transition-all duration-300 ease-out group-hover:scale-105 group-hover:-translate-y-1"
-                                style={{
-                                    width: '285px',
-                                    height: '231px',
-                                }}
+                                className="relative transition-all duration-300 ease-out group-hover:scale-105 group-hover:-translate-y-1 w-[260px] h-[211px] sm:w-[285px] sm:h-[231px]"
                             >
                                 {/* Background Image */}
                                 <div
                                     className="absolute inset-0 transition-all duration-300 group-hover:drop-shadow-[0_5px_15px_rgba(255,255,255,0.2)]"
                                     style={{
-                                        backgroundImage: 'url(/landingPage/team-card.png)',
+                                        backgroundImage: 'url(/landingPage/team-card.webp)',
                                         backgroundSize: 'contain',
                                         backgroundPosition: 'center',
                                         backgroundRepeat: 'no-repeat',
@@ -198,10 +193,9 @@ export function AdvisorsSection() {
                                     }}
                                 >
                                     <h3
-                                        className="text-white font-bold transition-all duration-300"
+                                        className="text-white font-bold transition-all duration-300 text-sm sm:text-base"
                                         style={{
                                             fontFamily: 'Roboto',
-                                            fontSize: '16px',
                                             lineHeight: '120%',
                                             marginBottom: '4px',
                                         }}
@@ -210,10 +204,9 @@ export function AdvisorsSection() {
                                     </h3>
 
                                     <p
-                                        className="text-white transition-all duration-300"
+                                        className="text-white transition-all duration-300 text-xs sm:text-sm"
                                         style={{
                                             fontFamily: 'Roboto',
-                                            fontSize: '14px',
                                             lineHeight: '120%',
                                         }}
                                     >
@@ -234,10 +227,9 @@ export function AdvisorsSection() {
                                     }}
                                 >
                                     <p
-                                        className="text-white transition-all duration-300"
+                                        className="text-white transition-all duration-300 text-xs sm:text-sm"
                                         style={{
                                             fontFamily: 'Roboto',
-                                            fontSize: '14px',
                                             lineHeight: '116%',
                                         }}
                                     >

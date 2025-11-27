@@ -3,8 +3,32 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Mail } from "lucide-react";
+import { usePathname, useRouter } from "next/navigation";
 
 export function Footer() {
+  const pathname = usePathname()
+  const router = useRouter()
+
+  const scrollToSection = (sectionId: string) => {
+    if (pathname !== '/') {
+      sessionStorage.setItem('scrollToSection', sectionId)
+      router.push('/')
+      return
+    }
+
+    const element = document.getElementById(sectionId)
+    if (element) {
+      const headerOffset = 63
+      const elementPosition = element.getBoundingClientRect().top
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth"
+      })
+    }
+  }
+
   return (
     <footer className="relative w-full mt-20 px-4 sm:px-6 lg:px-8 py-8 md:py-12 lg:py-16 overflow-hidden">
       <div
@@ -31,7 +55,7 @@ export function Footer() {
                 <div className="relative">
                   <div className="absolute inset-0 bg-gradient-to-r from-[#00D7E9]/20 to-[#FF9400]/20 rounded-lg blur-xl opacity-0 group-hover:opacity-50 transition-opacity duration-500" />
                   <Image
-                    src="/landingPage/logo_HP.png"
+                    src="/landingPage/logo_HP.webp"
                     alt="Health Protocol"
                     width={120}
                     height={65}
@@ -133,20 +157,6 @@ export function Footer() {
                   </span>
                 </Link>
 
-                {/* <Link
-                  href="/health-scorecard-explorer"
-                  className="group block text-gray-400 hover:text-white transition-all duration-300 relative text-sm md:text-base"
-                  style={{
-                    fontFamily: 'Roboto',
-                    fontWeight: 300,
-                  }}
-                >
-                  <span className="relative inline-block">
-                    Scorecard Explorer
-                    <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-gradient-to-r from-[#00D7E9] to-[#FF9400] group-hover:w-full transition-all duration-300" />
-                  </span>
-                </Link> */}
-
                 <Link
                   href="https://health-shared.com"
                   target="_blank"
@@ -163,9 +173,9 @@ export function Footer() {
                   </span>
                 </Link>
 
-                <Link
-                  href="#roadmap"
-                  className="group block text-gray-400 hover:text-white transition-all duration-300 relative text-sm md:text-base"
+                <button
+                  onClick={() => scrollToSection('roadmap')}
+                  className="group block text-gray-400 hover:text-white transition-all duration-300 relative text-sm md:text-base text-left"
                   style={{
                     fontFamily: 'Roboto',
                     fontWeight: 300,
@@ -175,7 +185,7 @@ export function Footer() {
                     Roadmap
                     <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-gradient-to-r from-[#00D7E9] to-[#FF9400] group-hover:w-full transition-all duration-300" />
                   </span>
-                </Link>
+                </button>
               </div>
             </div>
 
@@ -207,25 +217,23 @@ export function Footer() {
                   </span>
                 </Link>
 
-                <Link
-                  href="https://github.com/health-shared"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group block text-gray-400 hover:text-white transition-all duration-300 relative text-sm md:text-base"
+                <button
+                  onClick={() => scrollToSection('advisors')}
+                  className="group block text-gray-400 hover:text-white transition-all duration-300 relative text-sm md:text-base text-left"
                   style={{
                     fontFamily: 'Roboto',
                     fontWeight: 300,
                   }}
                 >
                   <span className="relative inline-block">
-                    GitHub
+                    Advisors
                     <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-gradient-to-r from-[#00D7E9] to-[#FF9400] group-hover:w-full transition-all duration-300" />
                   </span>
-                </Link>
+                </button>
 
-                <Link
-                  href="#team"
-                  className="group block text-gray-400 hover:text-white transition-all duration-300 relative text-sm md:text-base"
+                <button
+                  onClick={() => scrollToSection('team')}
+                  className="group block text-gray-400 hover:text-white transition-all duration-300 relative text-sm md:text-base text-left"
                   style={{
                     fontFamily: 'Roboto',
                     fontWeight: 300,
@@ -235,7 +243,7 @@ export function Footer() {
                     Team
                     <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-gradient-to-r from-[#00D7E9] to-[#FF9400] group-hover:w-full transition-all duration-300" />
                   </span>
-                </Link>
+                </button>
               </div>
             </div>
           </div>

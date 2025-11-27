@@ -8,7 +8,7 @@ import { WalletConnectButton } from '@/components/wallet-connect-button';
 
 export function HeroSection() {
   return (
-    <section id="hero" className="relative min-h-screen flex items-center justify-center w-full overflow-hidden pt-10 pb-12 sm:pb-16 lg:pb-20 px-4 sm:px-8 lg:px-16">
+    <section id="hero" className="relative flex items-center justify-center w-full overflow-hidden py-8 sm:py-10 md:py-12 lg:py-16 px-4 sm:px-8 lg:px-16">
       <div className="relative z-10 container mx-auto px-4 sm:px-6 text-center">
         <div className="max-w-[1440px] mx-auto flex flex-col items-center justify-center space-y-6 sm:space-y-8 lg:space-y-6">
 
@@ -41,7 +41,7 @@ export function HeroSection() {
                 <div
                   className="absolute inset-0 bg-center bg-no-repeat bg-contain"
                   style={{
-                    backgroundImage: 'url(/landingPage/hero-folder-icon.png)',
+                    backgroundImage: 'url(/landingPage/hero-folder-icon.webp)',
                   }}
                 />
 
@@ -55,7 +55,7 @@ export function HeroSection() {
                                lg:w-[211px] lg:h-[121px]
                                xl:w-[256px] xl:h-[146px]">
                   <Image
-                    src="/landingPage/logo_HS.png"
+                    src="/landingPage/logo_HS.webp"
                     alt="Health Shared"
                     fill
                     className="object-contain drop-shadow-lg"
@@ -94,7 +94,7 @@ export function HeroSection() {
                              xl:w-[186px] xl:h-[186px]
                              translate-y-0 md:-translate-y-[25px] lg:-translate-y-[45px] xl:-translate-y-[65px]">
                 <Image
-                  src="/landingPage/chain.png"
+                  src="/landingPage/chain.webp"
                   alt="Connection"
                   fill
                   className="object-contain drop-shadow-2xl"
@@ -117,7 +117,7 @@ export function HeroSection() {
                 <div
                   className="absolute inset-0 bg-center bg-no-repeat bg-contain"
                   style={{
-                    backgroundImage: 'url(/landingPage/hero-folder-icon.png)',
+                    backgroundImage: 'url(/landingPage/hero-folder-icon.webp)',
                   }}
                 />
 
@@ -131,7 +131,7 @@ export function HeroSection() {
                                lg:w-[189px] lg:h-[102px]
                                xl:w-[229px] xl:h-[124px]">
                   <Image
-                    src="/landingPage/logo_HP.png"
+                    src="/landingPage/logo_HP.webp"
                     alt="Health Protocol"
                     fill
                     className="object-contain drop-shadow-lg"

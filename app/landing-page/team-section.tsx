@@ -8,31 +8,31 @@ const teamMembers = [
         name: 'Prof. Usman Jaffer',
         title: 'CEO',
         description: 'Consultant Vascular Surgeon, academic, founder of health-shared.',
-        image: '/landingPage/usman-jaffer.png'
+        image: '/landingPage/usman-jaffer.webp'
     },
     {
         name: 'Carl Dempsey',
         title: 'Chief Strategy Officer',
         description: '20+ years board leadership at J&J, strategic partnerships.',
-        image: '/landingPage/carl-dempsey.png'
+        image: '/landingPage/carl-dempsey.webp'
     },
     {
         name: 'Nikolai Matiushev',
         title: 'Chief Technical Officer',
         description: 'Senior developer, 20+ years, mobile/web/enterprise systems.',
-        image: '/landingPage/nikolai-matiushev.png'
+        image: '/landingPage/nikolai-matiushev.webp'
     },
     {
         name: 'Prof Usman Khan',
         title: 'Non-exec Director',
         description: 'Chair of Motor Neuron Disease Association, public health expert.',
-        image: '/landingPage/usman-khan.png'
+        image: '/landingPage/usman-khan.webp'
     },
     {
         name: 'Dr Sadie Syed',
         title: 'Director of Content',
         description: 'Consultant Anesthetist, Director of Simulation at Imperial.',
-        image: '/landingPage/sadie-syed.png'
+        image: '/landingPage/sadie-syed.webp'
     },
     {
         name: 'Arif Minhas',
@@ -41,7 +41,7 @@ const teamMembers = [
         titleLine1: 'Head, Strategic',
         titleLine2: 'Partnerships',
         description: '20 years in business development strategic partnerships.',
-        image: '/landingPage/arif-minhas.png'
+        image: '/landingPage/arif-minhas.webp'
     },
     {
         name: 'Miss Florence Kashora',
@@ -49,20 +49,19 @@ const teamMembers = [
         nameLine2: 'Kashora',
         title: 'PhD Researcher',
         description: 'Doctor in surgical training, PhD in community activation.',
-        image: '/landingPage/florence-kashora.png'
+        image: '/landingPage/florence-kashora.webp'
     }
 ];
 
 export function TeamSection() {
     return (
-        <section id="team" className="relative w-full flex items-center justify-center py-20 px-4">
+        <section id="team" className="relative w-full flex items-center justify-center py-10 sm:py-12 md:py-16 lg:py-20 px-4">
             <div className="relative z-10 container mx-auto max-w-[1440px]">
                 {/* Title */}
                 <h2
-                    className="text-center text-white font-black mb-16"
+                    className="text-center text-white font-black mb-8 sm:mb-10 md:mb-12 lg:mb-16 text-3xl sm:text-4xl md:text-5xl lg:text-[56px]"
                     style={{
                         fontFamily: 'Archivo Black',
-                        fontSize: '56px',
                         lineHeight: '103%',
                     }}
                 >
@@ -70,21 +69,17 @@ export function TeamSection() {
                 </h2>
 
                 {/* Team Grid - First Row (4 cards) */}
-                <div className="flex flex-wrap justify-center gap-y-16 mb-14" style={{ gap: '64px 48px' }}>
+                <div className="flex flex-wrap justify-center gap-y-8 sm:gap-y-12 md:gap-y-16 mb-8 sm:mb-10 md:mb-14" style={{ gap: '32px 24px', '@media (min-width: 640px)': { gap: '48px 36px' }, '@media (min-width: 768px)': { gap: '64px 48px' } } as React.CSSProperties}>
                     {teamMembers.slice(0, 4).map((member, index) => (
                         <div key={index} className="relative flex items-center justify-center group">
                             <div
-                                className="relative transition-all duration-300 ease-out group-hover:scale-105 group-hover:-translate-y-1"
-                                style={{
-                                    width: '285px',
-                                    height: '231px',
-                                }}
+                                className="relative transition-all duration-300 ease-out group-hover:scale-105 group-hover:-translate-y-1 w-[260px] h-[211px] sm:w-[285px] sm:h-[231px]"
                             >
                                 {/* Background Image */}
                                 <div
                                     className="absolute inset-0 transition-all duration-300 group-hover:drop-shadow-[0_5px_15px_rgba(255,255,255,0.2)]"
                                     style={{
-                                        backgroundImage: 'url(/landingPage/team-card.png)',
+                                        backgroundImage: 'url(/landingPage/team-card.webp)',
                                         backgroundSize: 'contain',
                                         backgroundPosition: 'center',
                                         backgroundRepeat: 'no-repeat',
@@ -161,10 +156,9 @@ export function TeamSection() {
                                     }}
                                 >
                                     <h3
-                                        className="text-white font-bold transition-all duration-300"
+                                        className="text-white font-bold transition-all duration-300 text-sm sm:text-base"
                                         style={{
                                             fontFamily: 'Roboto',
-                                            fontSize: '16px',
                                             lineHeight: '120%',
                                             marginBottom: '4px',
                                         }}
@@ -173,10 +167,9 @@ export function TeamSection() {
                                     </h3>
 
                                     <p
-                                        className="text-white transition-all duration-300"
+                                        className="text-white transition-all duration-300 text-xs sm:text-sm"
                                         style={{
                                             fontFamily: 'Roboto',
-                                            fontSize: '14px',
                                             fontWeight: 300,
                                             lineHeight: '120%',
                                         }}
@@ -196,10 +189,9 @@ export function TeamSection() {
                                     }}
                                 >
                                     <p
-                                        className="text-white transition-all duration-300"
+                                        className="text-white transition-all duration-300 text-xs sm:text-sm"
                                         style={{
                                             fontFamily: 'Roboto',
-                                            fontSize: '14px',
                                             fontWeight: 300,
                                             lineHeight: '112%',
                                         }}
@@ -213,21 +205,17 @@ export function TeamSection() {
                 </div>
 
                 {/* Second Row - 3 cards centered */}
-                <div className="flex flex-wrap justify-center" style={{ gap: '64px 48px' }}>
+                <div className="flex flex-wrap justify-center" style={{ gap: '32px 24px' }}>
                     {teamMembers.slice(4).map((member, index) => (
                         <div key={index} className="relative flex items-center justify-center group">
                             <div
-                                className="relative transition-all duration-300 ease-out group-hover:scale-105 group-hover:-translate-y-1"
-                                style={{
-                                    width: '285px',
-                                    height: '231px',
-                                }}
+                                className="relative transition-all duration-300 ease-out group-hover:scale-105 group-hover:-translate-y-1 w-[260px] h-[211px] sm:w-[285px] sm:h-[231px]"
                             >
                                 {/* Background Image */}
                                 <div
                                     className="absolute inset-0 transition-all duration-300 group-hover:drop-shadow-[0_5px_15px_rgba(255,255,255,0.2)]"
                                     style={{
-                                        backgroundImage: 'url(/landingPage/team-card.png)',
+                                        backgroundImage: 'url(/landingPage/team-card.webp)',
                                         backgroundSize: 'contain',
                                         backgroundPosition: 'center',
                                         backgroundRepeat: 'no-repeat',
@@ -308,20 +296,18 @@ export function TeamSection() {
                                     {member.nameLine2 ? (
                                         <div className="text-center">
                                             <div
-                                                className="text-white font-bold transition-all duration-300"
+                                                className="text-white font-bold transition-all duration-300 text-sm sm:text-base"
                                                 style={{
                                                     fontFamily: 'Roboto',
-                                                    fontSize: '16px',
                                                     lineHeight: '120%',
                                                 }}
                                             >
                                                 {member.nameLine1}
                                             </div>
                                             <div
-                                                className="text-white font-bold transition-all duration-300"
+                                                className="text-white font-bold transition-all duration-300 text-sm sm:text-base"
                                                 style={{
                                                     fontFamily: 'Roboto',
-                                                    fontSize: '16px',
                                                     lineHeight: '120%',
                                                     marginBottom: '4px',
                                                 }}
@@ -331,10 +317,9 @@ export function TeamSection() {
                                         </div>
                                     ) : (
                                         <h3
-                                            className="text-white font-bold text-center transition-all duration-300"
+                                            className="text-white font-bold text-center transition-all duration-300 text-sm sm:text-base"
                                             style={{
                                                 fontFamily: 'Roboto',
-                                                fontSize: '16px',
                                                 lineHeight: '120%',
                                                 marginBottom: '4px',
                                             }}
@@ -347,10 +332,9 @@ export function TeamSection() {
                                     {member.titleLine2 ? (
                                         <div className="text-center">
                                             <div
-                                                className="text-white transition-all duration-300"
+                                                className="text-white transition-all duration-300 text-xs sm:text-sm"
                                                 style={{
                                                     fontFamily: 'Roboto',
-                                                    fontSize: '14px',
                                                     fontWeight: 300,
                                                     lineHeight: '120%',
                                                 }}
@@ -358,10 +342,9 @@ export function TeamSection() {
                                                 {member.titleLine1}
                                             </div>
                                             <div
-                                                className="text-white transition-all duration-300"
+                                                className="text-white transition-all duration-300 text-xs sm:text-sm"
                                                 style={{
                                                     fontFamily: 'Roboto',
-                                                    fontSize: '14px',
                                                     fontWeight: 300,
                                                     lineHeight: '120%',
                                                 }}
@@ -371,10 +354,9 @@ export function TeamSection() {
                                         </div>
                                     ) : (
                                         <p
-                                            className="text-white text-center transition-all duration-300"
+                                            className="text-white text-center transition-all duration-300 text-xs sm:text-sm"
                                             style={{
                                                 fontFamily: 'Roboto',
-                                                fontSize: '14px',
                                                 fontWeight: 300,
                                                 lineHeight: '120%',
                                             }}
@@ -395,10 +377,9 @@ export function TeamSection() {
                                     }}
                                 >
                                     <p
-                                        className="text-white transition-all duration-300"
+                                        className="text-white transition-all duration-300 text-xs sm:text-sm"
                                         style={{
                                             fontFamily: 'Roboto',
-                                            fontSize: '14px',
                                             fontWeight: 300,
                                             lineHeight: '112%',
                                         }}

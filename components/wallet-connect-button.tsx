@@ -3,8 +3,6 @@
 import { ConnectButton } from "thirdweb/react"
 import { client } from "@/lib/thirdweb"
 import { createWallet } from "thirdweb/wallets"
-import { Wallet, ArrowRight } from "lucide-react"
-import { useRouter } from "next/navigation"
 import { useActiveAccount } from "thirdweb/react"
 import { useEffect } from "react"
 
@@ -35,19 +33,16 @@ const wallets = [
 ]
 
 export function WalletConnectButton() {
-  const router = useRouter()
   const account = useActiveAccount()
 
   useEffect(() => {
     async function ensureTENNetwork() {
       if (typeof window !== "undefined" && window.ethereum && account) {
         try {
-          // Add TEN network to MetaMask
           await window.ethereum.request({
             method: "wallet_addEthereumChain",
             params: [TEN_NETWORK_PARAMS],
           });
-          // Switch to TEN network
           await window.ethereum.request({
             method: "wallet_switchEthereumChain",
             params: [{ chainId: TEN_NETWORK_PARAMS.chainId }],
@@ -55,11 +50,10 @@ export function WalletConnectButton() {
         } catch (err) {
           console.error("Network switch error:", err);
         }
-        router.push("/dashboard")
       }
     }
     ensureTENNetwork();
-  }, [account, router])
+  }, [account])
 
   return (
     <div className="wallet-connect-container">
@@ -78,6 +72,20 @@ export function WalletConnectButton() {
             border: '2px solid white',
             color: 'white',
           }
+        }}
+        detailsButton={{
+          displayBalanceToken: undefined,
+          render: () => (
+            <button
+              className="w-[234px] h-[44px] rounded-lg border-2 border-green-500 bg-green-500/20 text-green-400 font-semibold text-[16px] transition-all duration-200 hover:bg-green-500/30 flex items-center justify-center gap-2"
+              style={{
+                fontFamily: 'Noto Sans, sans-serif',
+              }}
+            >
+              <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
+              Connected
+            </button>
+          )
         }}
         connectModal={{
           size: "wide",

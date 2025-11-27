@@ -46,7 +46,7 @@ export default function LitepaperPage() {
             <div
                 className="fixed inset-0 z-0 bg-black w-full h-full"
                 style={{
-                    backgroundImage: 'url(/landingPage/background.png)',
+                    backgroundImage: 'url(/landingPage/background.webp)',
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
                     backgroundRepeat: 'no-repeat'

@@ -5,7 +5,7 @@ import Image from 'next/image';
 
 const CommunityLiquidity = () => {
     return (
-        <div className="relative w-full min-h-screen flex items-center justify-center pt-10 pb-12 sm:pb-16 lg:pb-20 px-4 sm:px-8 lg:px-16">
+        <div className="relative w-full flex items-center justify-center py-8 sm:py-10 md:py-12 lg:py-16 px-4 sm:px-8 lg:px-16">
             <div className="w-full max-w-[1440px] mx-auto">
 
                 <div className="flex flex-col md:flex-row justify-center items-center gap-6 sm:gap-8 md:gap-6 lg:gap-8 xl:gap-6 2xl:gap-8">

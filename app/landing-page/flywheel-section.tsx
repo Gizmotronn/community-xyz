@@ -5,7 +5,7 @@ import Image from 'next/image';
 
 const Flywheel = () => {
     return (
-        <div className="relative w-full min-h-screen flex items-center justify-center pt-10 pb-10 px-4 sm:px-8 md:px-12 lg:px-16">
+        <div className="relative w-full flex items-center justify-center py-8 sm:py-10 md:py-12 lg:py-16 px-4 sm:px-8 md:px-12 lg:px-16">
             <div className="w-full max-w-[1440px] mx-auto flex flex-col items-center justify-center">
                 {/* Title */}
                 <h1
@@ -59,7 +59,7 @@ const Flywheel = () => {
                         >
                             <div className="relative w-full h-full">
                                 <Image
-                                    src="/landingPage/folder.png"
+                                    src="/landingPage/folder.webp"
                                     alt="Folder"
                                     width={204.5}
                                     height={186}
@@ -118,7 +118,7 @@ const Flywheel = () => {
                         >
                             <div className="relative w-full h-full">
                                 <Image
-                                    src="/landingPage/folder.png"
+                                    src="/landingPage/folder.webp"
                                     alt="Folder"
                                     width={204.5}
                                     height={188}
@@ -177,7 +177,7 @@ const Flywheel = () => {
                         >
                             <div className="relative w-full h-full">
                                 <Image
-                                    src="/landingPage/folder.png"
+                                    src="/landingPage/folder.webp"
                                     alt="Folder"
                                     width={204.5}
                                     height={187}
@@ -236,7 +236,7 @@ const Flywheel = () => {
                         >
                             <div className="relative w-full h-full">
                                 <Image
-                                    src="/landingPage/folder.png"
+                                    src="/landingPage/folder.webp"
                                     alt="Folder"
                                     width={204.5}
                                     height={186}
@@ -297,7 +297,7 @@ const Flywheel = () => {
                         >
                             <div className="relative w-full h-full">
                                 <Image
-                                    src="/landingPage/folder.png"
+                                    src="/landingPage/folder.webp"
                                     alt="Folder"
                                     width={204.5}
                                     height={186}

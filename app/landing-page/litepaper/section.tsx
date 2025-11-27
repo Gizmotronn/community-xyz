@@ -5,10 +5,10 @@ import Image from "next/image";
 
 export function LitepaperSection() {
     return (
-        <section id="litepaper" className="w-full py-12 md:py-16 lg:py-20 flex flex-col items-center relative overflow-hidden">
+        <section id="litepaper" className="w-full py-8 sm:py-10 md:py-12 lg:py-16 xl:py-20 flex flex-col items-center relative overflow-hidden">
             {/* Title */}
             <h1
-                className="text-white font-bold text-center mb-8 md:mb-12 lg:mb-20 relative z-10 px-4"
+                className="text-white font-bold text-center mb-6 sm:mb-8 md:mb-10 lg:mb-16 xl:mb-20 relative z-10 px-4"
                 style={{
                     fontFamily: 'Archivo Black',
                     fontSize: 'clamp(32px, 5vw, 56px)',
@@ -59,7 +59,7 @@ export function LitepaperSection() {
                     </div>
 
                     {/* Center Text Content */}
-                    <div className="relative z-10 max-w-[55%] sm:max-w-[60%] md:max-w-[500px] lg:max-w-[716px] mx-auto px-2 sm:px-4 md:px-6 lg:px-8 py-8 md:py-12">
+                    <div className="relative z-10 max-w-[55%] sm:max-w-[60%] md:max-w-[500px] lg:max-w-[716px] mx-auto px-2 sm:px-4 md:px-6 lg:px-8 py-6 sm:py-8 md:py-10 lg:py-12">
                         <p
                             className="text-white text-center"
                             style={{

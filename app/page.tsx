@@ -1,4 +1,3 @@
-
 "use client"
 
 import { TopNavigation } from "@/components/top-navigation";
@@ -36,7 +35,7 @@ export default function HomePage() {
       <AnimatedBackground />
 
       <main className="relative z-10 min-h-screen text-gray-900 font-body overflow-x-hidden">
-        <div className="flex flex-col gap-12 items-center justify-center w-full max-w-[100vw] pt-[63px] overflow-x-hidden">
+        <div className="flex flex-col gap-4 sm:gap-6 md:gap-8 lg:gap-12 items-center justify-center w-full max-w-[100vw] pt-[63px] overflow-x-hidden">
           <HeroSection />
           <CommunityLiquidity />
           <VideoSection />

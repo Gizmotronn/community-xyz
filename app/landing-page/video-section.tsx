@@ -18,10 +18,10 @@ export function VideoSection() {
     };
 
     return (
-        <section className="relative w-full min-h-screen flex flex-col items-center justify-center py-10 sm:py-16 md:py-20 px-4 sm:px-6 md:px-10 lg:px-16">
+        <section className="relative w-full flex flex-col items-center justify-center py-8 sm:py-10 md:py-12 lg:py-16 px-4 sm:px-6 md:px-10 lg:px-16">
             {/* Main Heading  */}
             <h1
-                className="text-center mb-8 sm:mb-12 md:mb-16 px-2 sm:px-4"
+                className="text-center mb-6 sm:mb-8 md:mb-10 lg:mb-12 px-2 sm:px-4"
                 style={{
                     fontFamily: 'Archivo Black',
                     fontWeight: 400,
@@ -40,7 +40,7 @@ export function VideoSection() {
                 <div
                     className="relative overflow-hidden bg-black border border-white/70 rounded-lg hover:border-white/20 transition-all duration-300 w-full"
                     style={{
-                        height: 'clamp(300px, 50vw, 480px)'
+                        height: 'clamp(200px, 50vw, 480px)'
                     }}
                 >
                     {/* Video Element */}

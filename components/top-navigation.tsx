@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button"
 import { Menu, X } from "lucide-react"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { usePathname, useRouter } from "next/navigation"
 import Link from "next/link"
 
@@ -18,12 +18,20 @@ export function TopNavigation({ variant = 'landing' }: TopNavigationProps) {
     const router = useRouter()
 
     const scrollToSection = (sectionId: string) => {
+        setIsMobileMenuOpen(false)
+        
         if (pathname !== '/') {
-            router.push(`/#${sectionId}`)
-            setIsMobileMenuOpen(false)
+            // Store the section to scroll to after navigation
+            sessionStorage.setItem('scrollToSection', sectionId)
+            router.push('/')
             return
         }
 
+        // Direct scroll if already on homepage
+        performScroll(sectionId)
+    }
+
+    const performScroll = (sectionId: string) => {
         const element = document.getElementById(sectionId)
         if (element) {
             const headerOffset = 63
@@ -35,8 +43,19 @@ export function TopNavigation({ variant = 'landing' }: TopNavigationProps) {
                 behavior: "smooth"
             })
         }
-        setIsMobileMenuOpen(false)
     }
+
+    // Handle scroll after navigation from another page
+    useEffect(() => {
+        const scrollTarget = sessionStorage.getItem('scrollToSection')
+        if (scrollTarget && pathname === '/') {
+            // Small delay to ensure DOM is ready
+            setTimeout(() => {
+                performScroll(scrollTarget)
+                sessionStorage.removeItem('scrollToSection')
+            }, 100)
+        }
+    }, [pathname])
 
     const landingNavItems = [
         { label: 'Home', action: () => scrollToSection("hero") },
@@ -142,7 +161,7 @@ export function TopNavigation({ variant = 'landing' }: TopNavigationProps) {
 
                 <div className="md:hidden">
                     <Button
-                        className="bg-[#5865F2] hover:bg-[#4752C4] text-black font-['Noto_Sans'] text-xs sm:text-sm font-semibold px-3 sm:px-4 py-2 rounded-[10px] h-8 transition-colors"
+                        className="bg-[#5865F2] hover:bg-[#4752C4] text-black font-['Noto_Sans'] text-sm font-semibold px-3 sm:px-4 py-2 rounded-[10px] h-8 transition-colors"
                         asChild
                     >
                         <a href="https://discord.com/invite/nMqmSJSCzZ" target="_blank" rel="noopener noreferrer">

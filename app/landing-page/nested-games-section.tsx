@@ -2,20 +2,20 @@
 
 export default function NestedGamesSection() {
     return (
-        <section className="w-full max-w-7xl mx-auto py-16 px-4 md:py-20">
+        <section className="w-full max-w-7xl mx-auto py-10 sm:py-12 md:py-16 lg:py-20 px-4">
             {/* Main Title */}
             <h1
-                className="text-3xl md:text-5xl lg:text-6xl font-bold text-white text-center mb-12 md:mb-16"
+                className="text-3xl md:text-5xl lg:text-6xl font-bold text-white text-center mb-8 sm:mb-10 md:mb-12 lg:mb-16"
                 style={{ fontFamily: 'Archivo Black' }}
             >
                 Nested Games Result in Win-Win
             </h1>
 
             {/* Two Column Layout */}
-            <div className="grid xl:grid-cols-2 gap-8 xl:gap-12">
+            <div className="grid xl:grid-cols-2 gap-6 sm:gap-8 xl:gap-12">
 
                 {/* Left Column - Health Communities (3,3) */}
-                <div className="space-y-6">
+                <div className="space-y-4 sm:space-y-6">
                     {/* Header */}
                     <div>
                         <h2 className="text-xl md:text-2xl font-bold text-white mb-2" style={{ fontFamily: 'Roboto', fontWeight: 700 }}>
@@ -30,7 +30,7 @@ export default function NestedGamesSection() {
                     <div className="relative">
                         <div className="relative">
                             <img
-                                src="/landingPage/long_folder_icon.png"
+                                src="/landingPage/long_folder_icon.webp"
                                 alt="Folder"
                                 className="w-full h-auto"
                             />
@@ -81,7 +81,7 @@ export default function NestedGamesSection() {
                     </div>
 
                     {/* Bullet Points */}
-                    <ul className="space-y-3 text-gray-300 text-sm md:text-base" style={{ fontFamily: 'Roboto', fontWeight: 300 }}>
+                    <ul className="space-y-2 sm:space-y-3 text-gray-300 text-sm md:text-base" style={{ fontFamily: 'Roboto', fontWeight: 300 }}>
                         <li className="flex gap-3">
                             <span className="mt-1">•</span>
                             <span>Smart contract Dutch auction ensure early community member co-operation – growing human capital (activation and data availability).</span>
@@ -98,7 +98,7 @@ export default function NestedGamesSection() {
                 </div>
 
                 {/* Right Column - Donor Stakeholder (5,5) */}
-                <div className="space-y-6">
+                <div className="space-y-4 sm:space-y-6">
                     {/* Header */}
                     <div>
                         <h2 className="text-xl md:text-2xl font-bold text-white mb-2" style={{ fontFamily: 'Roboto', fontWeight: 700 }}>
@@ -113,7 +113,7 @@ export default function NestedGamesSection() {
                     <div className="relative">
                         <div className="relative">
                             <img
-                                src="/landingPage/long_folder_icon.png"
+                                src="/landingPage/long_folder_icon.webp"
                                 alt="Folder"
                                 className="w-full h-auto"
                             />
@@ -164,7 +164,7 @@ export default function NestedGamesSection() {
                     </div>
 
                     {/* Bullet Point */}
-                    <ul className="space-y-3 text-gray-300 text-sm md:text-base" style={{ fontFamily: 'Roboto', fontWeight: 300 }}>
+                    <ul className="space-y-2 sm:space-y-3 text-gray-300 text-sm md:text-base" style={{ fontFamily: 'Roboto', fontWeight: 300 }}>
                         <li className="flex gap-3">
                             <span className="mt-1">•</span>
                             <span>Early staking gains yield and entry-price advantage.</span>

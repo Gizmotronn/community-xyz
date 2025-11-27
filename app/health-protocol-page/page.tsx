@@ -31,7 +31,7 @@ export default function HealthProtocolPage() {
                                 {/* Health Protocol Logo */}
                                 <div className="relative w-[180px] h-[100px] xs:w-[220px] xs:h-[120px] sm:w-[280px] sm:h-[150px] md:w-[340px] md:h-[180px] lg:w-[380px] lg:h-[200px] mb-4 sm:mb-6">
                                     <Image
-                                        src="/landingPage/logo_HP.png"
+                                        src="/landingPage/logo_HP.webp"
                                         alt="Health Protocol"
                                         fill
                                         className="object-contain drop-shadow-2xl"

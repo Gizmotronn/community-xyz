@@ -18,11 +18,10 @@ const dmSans = DM_Sans({
 })
 
 export const metadata: Metadata = {
-  title: 'Health Protocol',
-  description: 'Health Protocol',
-  icons: {
-    icon: '/hp.svg',
-  },
+  title: "Health Protocol - Decentralized Health Innovation",
+  description:
+    "Join the future of healthcare with Health Protocol. Connect your wallet and join our community to revolutionize health data ownership.",
+  generator: "Health Protocol",
 }
 
 export default function RootLayout({
