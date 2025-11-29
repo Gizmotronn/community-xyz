@@ -119,7 +119,7 @@ export function Footer() {
                   </svg>
                 </Link>
 
-                {/* Email */}
+                {/* Email
                 <Link
                   href="mailto:contact@healthprotocol.xyz"
                   aria-label="Email us"
@@ -127,7 +127,7 @@ export function Footer() {
                 >
                   <div className="absolute inset-0 bg-gradient-to-br from-[#00D7E9]/10 to-[#FF9400]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   <Mail className="relative w-4 h-4 text-gray-300 group-hover:text-white transition-colors duration-300" />
-                </Link>
+                </Link> */}
               </div>
             </div>
 
@@ -265,7 +265,7 @@ export function Footer() {
                 © {new Date().getFullYear()} Health Protocol. All rights reserved.
               </p>
 
-              {/* Legal Links */}
+              {/* Legal Links
               <div className="flex flex-wrap justify-center gap-3 md:gap-4">
                 <Link
                   href="/privacy"
@@ -299,7 +299,7 @@ export function Footer() {
                 >
                   Cookie Policy
                 </Link>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
